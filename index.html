@@ -13,16 +13,16 @@
    Design tokens - Victorian Steampunk (design.md + prd.md section 8)
    ========================================================================== */
 :root {
-  --color-brass: #B5A642;
-  --color-mahogany: #5C0000;
-  --color-sepia: #704214;
-  --color-parchment: #F5DEB3;
-  --color-copper: #B87333;
-  --color-teal: #008080;
-  --color-orange: #D46A00;
-  --color-ivory: #FFFFF0;
-  --color-text: #2a2420;
-  --color-text-dim: #4a3f35;
+  --color-brass: #87CEEB;
+  --color-mahogany: #2F4F4F;
+  --color-sepia: #778899;
+  --color-parchment: #F5F5DC;
+  --color-copper: #ADD8E6;
+  --color-teal: #ADD8E6;
+  --color-orange: #87CEEB;
+  --color-ivory: #F5F5DC;
+  --color-text: #2F4F4F;
+  --color-text-dim: #778899;
   --radius: 0.5rem;
   --max-width: 1280px;
   --gap-section: clamp(4rem, 8vw, 8rem);
@@ -77,7 +77,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .nav__list { display: flex; gap: 1.5rem; list-style: none; }
 .nav__link { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 500; color: var(--color-parchment); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: var(--radius); }
 .nav__link:hover, .nav__link:focus-visible { background: rgba(255,255,240,0.15); color: var(--color-ivory); }
-.nav__link--active { color: var(--color-ivory); background: rgba(92,0,0,0.15); }
+.nav__link--active { color: var(--color-ivory); background: rgba(47,79,79,0.15); }
 
 /* ==========================================================================
    Hero (asymmetric split, max 4 text elements, headline max 2 lines)
@@ -96,10 +96,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
   text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
 }
 .btn--primary { background: var(--color-brass); color: var(--color-parchment); }
-.btn--primary:hover { filter: brightness(0.92); box-shadow: 0 4px 12px rgba(92,0,0,0.15); }
+.btn--primary:hover { filter: brightness(0.92); box-shadow: 0 4px 12px rgba(47,79,79,0.15); }
 .btn--primary:active { transform: translateY(-1px); }
 .btn--ghost { background: transparent; color: var(--color-mahogany); border: 1.5px solid var(--color-sepia); }
-.btn--ghost:hover { background: rgba(92,0,0,0.05); }
+.btn--ghost:hover { background: rgba(47,79,79,0.05); }
 
 .hero__illustration { position: relative; height: 320px; display: flex; align-items: center; justify-content: center; }
 .gear { fill: var(--color-brass); stroke: var(--color-sepia); stroke-width: 1.5; transform-origin: 50% 50%; }
@@ -121,7 +121,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 /* ==========================================================================
    Three values (zigzag, max 2 consecutive alternations -> Integrity breaks pattern)
    ========================================================================== */
-.values { padding: var(--gap-section) 1.5rem; background: #f1e6cb; }
+.values { padding: var(--gap-section) 1.5rem; background: var(--color-parchment); }
 .values__list { display: flex; flex-direction: column; gap: var(--gap-section); max-width: var(--max-width); margin: 0 auto; }
 .value-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--color-parchment); border: 1px solid var(--color-copper); border-radius: var(--radius); padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
 .value-card--reverse { grid-template-areas: "text image"; }
@@ -135,7 +135,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .value-card__behaviors { margin-bottom: 1rem; }
 .value-card__behaviors li { margin-bottom: 0.5rem; padding-left: 1.25rem; position: relative; color: var(--color-text-dim); }
 .value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; }
-.value-card__anti { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-mahogany); padding: 0.75rem 1rem; border-left: 3px solid var(--color-copper); background: rgba(184,115,51,0.08); border-radius: 0 var(--radius) var(--radius) 0; }
+.value-card__anti { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-mahogany); padding: 0.75rem 1rem; border-left: 3px solid var(--color-copper); background: rgba(173,214,230,0.08); border-radius: 0 var(--radius) var(--radius) 0; }
 
 /* Excellence: semua teks rata kanan, warna definisi sepia bersih */
 .value-card--excellence .value-card__text { text-align: right; }
