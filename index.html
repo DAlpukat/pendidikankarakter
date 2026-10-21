@@ -85,7 +85,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .text-center { text-align: center; }
 
 /* ==========================================================================
-   Navigation (sticky brass band - contained normally, full-width when stuck)
+   Navigation (sticky brass band - contained normally, full-width bg when stuck)
    ========================================================================== */
 .nav-sentinel { height: 1px; }
 
@@ -95,19 +95,17 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
   z-index: var(--z-nav);
   background: var(--color-brass);
   border-bottom: 3px double var(--color-sepia);
-  left: 50%;
-  transform: translateX(-50%);
-  width: var(--max-width);
-  max-width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
   opacity: 1;
   box-shadow: 0 0 0 rgba(47,79,79,0);
-  transition: left 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), width 0.5s ease, box-shadow 0.4s ease;
+  transition: box-shadow 0.4s ease, max-width 0.5s ease;
 }
 
 .nav--stuck {
-  left: 0;
-  transform: none;
-  width: 100vw;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   box-shadow: 0 6px 24px rgba(47,79,79,0.3);
 }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; height: 64px; }
@@ -278,8 +276,7 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
 </head>
 <body>
 
-<div class="page-frame">
-  <div class="nav-sentinel" aria-hidden="true"></div>
+<div class="nav-sentinel" aria-hidden="true"></div>
 
 <nav class="nav" id="main-nav" aria-label="Navigasi utama">
   <div class="nav__inner">
@@ -292,6 +289,8 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
     </ul>
   </div>
 </nav>
+
+<div class="page-frame">
 
 <header class="hero" id="hero">
   <div class="hero__corner corner--tl"></div>
