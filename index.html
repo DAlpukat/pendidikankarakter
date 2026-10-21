@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEI — Harmony, Excellence, Integrity | Telkom University</title>
-<meta name="description" content="Sosialisasi nilai HEI — Harmony, Excellence, Integrity — bagi sivitas akademik Telkom University. Tiga nilai, bukan slogan, tapi cara hidup.">
+<title>HEI - Harmony, Excellence, Integrity | Telkom University</title>
+<meta name="description" content="Sosialisasi nilai HEI - Harmony, Excellence, Integrity - bagi sivitas akademik Telkom University. Tiga nilai, bukan slogan, tapi cara hidup.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
-   Design tokens — Victorian Steampunk (design.md + prd.md section 8)
+   Design tokens - Victorian Steampunk (design.md + prd.md section 8)
    ========================================================================== */
 :root {
   --color-brass: #B5A642;
@@ -24,7 +24,6 @@
   --color-text: #2a2420;
   --color-text-dim: #4a3f35;
   --radius: 0.5rem;
-  --space: 0.5rem;
   --max-width: 1280px;
   --gap-section: clamp(4rem, 8vw, 8rem);
   --font-display: "IM Fell English", serif;
@@ -64,7 +63,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .text-center { text-align: center; }
 
 /* ==========================================================================
-   Navigation (sticky)
+   Navigation (sticky, 64px, single line desktop)
    ========================================================================== */
 .nav {
   position: sticky;
@@ -81,7 +80,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .nav__link--active { color: var(--color-ivory); background: rgba(92,0,0,0.15); }
 
 /* ==========================================================================
-   Hero (asymmetric)
+   Hero (asymmetric split, max 4 text elements, headline max 2 lines)
    ========================================================================== */
 .hero { position: relative; padding: clamp(3rem, 6vw, 6rem) 1.5rem; overflow: hidden; }
 .hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: var(--max-width); margin: 0 auto; }
@@ -89,7 +88,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .hero__eyebrow { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-sepia); margin-bottom: 1rem; display: block; }
 .hero__title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.05; color: var(--color-mahogany); margin-bottom: 1rem; letter-spacing: -0.01em; }
 .hero__subtitle { font-size: 1.125rem; line-height: 1.6; color: var(--color-text-dim); max-width: 42ch; margin-bottom: 1.5rem; }
-.hero__tagline { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-teal); margin-bottom: 2rem; display: inline-block; }
 .hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -112,7 +110,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 /* ==========================================================================
-   About
+   About (vertical stack)
    ========================================================================== */
 .about { padding: var(--gap-section) 1.5rem; }
 .about__inner { max-width: 48rem; margin: 0 auto; }
@@ -121,7 +119,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .about__letter p { margin-bottom: 0.75rem; font-size: 0.95rem; }
 
 /* ==========================================================================
-   Three values (zig-zag)
+   Three values (zigzag, max 2 consecutive alternations -> Integrity breaks pattern)
    ========================================================================== */
 .values { padding: var(--gap-section) 1.5rem; background: #f1e6cb; }
 .values__list { display: flex; flex-direction: column; gap: var(--gap-section); max-width: var(--max-width); margin: 0 auto; }
@@ -139,37 +137,41 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; }
 .value-card__anti { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-mahogany); padding: 0.75rem 1rem; border-left: 3px solid var(--color-copper); background: rgba(184,115,51,0.08); border-radius: 0 var(--radius) var(--radius) 0; }
 
+/* Integrity breaks zigzag: full-width vertical stack */
+.value-card--stack { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 2.5rem 2rem; }
+.value-card--stack .value-card__text { text-align: center; }
+.value-card--stack .value-card__def { max-width: none; margin-left: auto; margin-right: auto; }
+
 /* ==========================================================================
-   Refleksi
+   Refleksi (centered quotes, italic descender clearance)
    ========================================================================== */
 .refleksi { padding: var(--gap-section) 1.5rem; }
 .refleksi__inner { max-width: 42rem; margin: 0 auto; text-align: center; }
 .refleksi h2 { font-size: 1.75rem; margin-bottom: 1.5rem; text-align: center; }
 .refleksi__questions { display: flex; flex-direction: column; gap: 1.5rem; }
-.refleksi blockquote { font-family: var(--font-display); font-style: italic; font-size: 1.125rem; color: var(--color-text-dim); padding: 1rem 1.5rem; border-left: 3px solid var(--color-brass); background: var(--color-ivory); border-radius: 0 var(--radius) var(--radius) 0; text-align: left; }
+.refleksi blockquote { font-family: var(--font-display); font-style: italic; font-size: 1.125rem; line-height: 1.4; color: var(--color-text-dim); padding: 1rem 1.5rem 1.25rem; border-left: 3px solid var(--color-brass); background: var(--color-ivory); border-radius: 0 var(--radius) var(--radius) 0; text-align: left; }
 .refleksi blockquote::before { content: "\201C"; font-size: 2rem; color: var(--color-sepia); line-height: 0; }
+.refleksi cite { display: block; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono); font-style: normal; color: var(--color-sepia); }
 
 /* ==========================================================================
-   CTA
+   CTA (dark band, single primary CTA - no duplicate share intent)
    ========================================================================== */
 .cta { padding: var(--gap-section) 1.5rem; background: var(--color-mahogany); color: var(--color-parchment); text-align: center; }
-.cta h2 { color: var(--color-parchment); font-size: 1.75rem; margin-bottom: 0.75rem; }
-.cta p { color: rgba(255,255,240,0.85); margin-bottom: 1.5rem; max-width: 42ch; margin-left: auto; margin-right: auto; }
+.cta__inner { max-width: 42rem; margin: 0 auto; }
+.cta h2 { color: var(--color-parchment); font-size: 1.75rem; margin-bottom: 0.75rem; text-align: center; }
+.cta p { color: rgba(255,255,240,0.85); margin-bottom: 1.5rem; }
 .cta__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .btn--cta { background: var(--color-brass); color: var(--color-parchment); }
 .btn--cta:hover { filter: brightness(0.92); }
-.cta__links { margin-top: 1.5rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-.cta__links a { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-copper); text-decoration: none; }
-.cta__links a:hover { text-decoration: underline; }
 
 /* ==========================================================================
-   Footer
+   Footer (centered stack, no em-dash, no decorative dot)
    ========================================================================== */
 footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px solid var(--color-sepia); }
-.footer__inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
+.footer__inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; align-items: center; text-align: center; }
 .footer__credit { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); }
 .footer__source { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); }
-.footer__note { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-sepia); margin-top: 0.5rem; }
+.footer__note { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-sepia); }
 
 /* ==========================================================================
    Toast
@@ -181,13 +183,15 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
    Responsive
    ========================================================================== */
 @media (max-width: 768px) {
-  .hero__grid, .value-card { grid-template-columns: 1fr; }
-  .value-card--reverse .value-card__text { text-align: left; }
+  .hero__grid, .value-card, .value-card--reverse { grid-template-columns: 1fr; }
+  .value-card--reverse .value-card__text, .value-card--stack .value-card__text { text-align: left; }
+  .value-card--stack .value-card__def { margin-left: 0; margin-right: 0; }
   .hero__title { font-size: clamp(2rem, 8vw, 3rem); }
   .nav__list { gap: 1rem; }
   .nav__link { font-size: 0.8rem; padding: 0.3rem 0.5rem; }
   .values__list { gap: 3rem; }
   .value-card { padding: 1.5rem; gap: 1.5rem; }
+  .value-card--stack { padding: 2rem 1.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -215,12 +219,10 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
   <div class="hero__grid">
     <div class="hero__content">
       <span class="hero__eyebrow">Sosialisasi Nilai HEI</span>
-      <h1 class="hero__title">Harmony.<br>Excellence.<br>Integrity.</h1>
-      <p class="hero__subtitle">Tiga nilai yang menggerakkan keseharian kita di Telkom University — bukan slogan, tapi cara hidup.</p>
-      <span class="hero__tagline">Sebuah sosialisasi dari mahasiswa, untuk mahasiswa.</span>
+      <h1 class="hero__title">Harmony. Excellence.<br>Integrity.</h1>
+      <p class="hero__subtitle">Tiga nilai yang menggerakkan keseharian kita di Telkom University - bukan slogan, tapi cara hidup.</p>
       <div class="hero__cta">
         <a href="#values" class="btn btn--primary">Pelajari ketiga nilainya</a>
-        <button class="btn btn--ghost" id="btn-share" type="button">Bagikan ke kelas</button>
       </div>
     </div>
     <div class="hero__illustration" aria-hidden="true">
@@ -237,11 +239,11 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
 <section class="about" id="about">
   <div class="container about__inner">
     <h2>Mengapa halaman ini ada</h2>
-    <p>Sosialisasi nilai HEI — Harmony, Excellence, Integrity — sering terbatas pada sesi orientasi awal semester atau poster statis di koridor kampus. Setelah itu, eksposur mahasiswa terhadap ketiga nilai ini menurun drastis. Halaman ini dirisikan sebagai kanal digital ringan yang bisa diakses kapan saja, oleh siapa saja, dari HP atau laptop.</p>
+    <p>Sosialisasi nilai HEI - Harmony, Excellence, Integrity - sering terbatas pada sesi orientasi awal semester atau poster statis di koridor kampus. Setelah itu, eksposur mahasiswa terhadap ketiga nilai ini menurun drastis. Halaman ini dirisikan sebagai kanal digital ringan yang bisa diakses kapan saja, oleh siapa saja, dari HP atau laptop.</p>
     <p>Konten di bawah dirumuskan oleh mahasiswa, untuk mahasiswa, sebagai rujukan cepat sebelum kelas, organisasi, atau proyek kelompok dimulai.</p>
     <div class="about__letter">
       <p><strong>Dari tim penyusun:</strong> Kami berharap halaman ini membantu kamu memahami HEI bukan sebagai tiga slogan terpisah, tetapi sebagai satu kompas perilaku yang diterapkan di kelas, di organisasi, dan di setiap hari di kampus.</p>
-      <p class="mono" style="font-size:0.8rem; color:var(--color-teal); text-align:right;">— Tim Sosialisasi Kelas</p>
+      <p class="mono" style="font-size:0.8rem; color:var(--color-teal); text-align:right;">- Tim Sosialisasi Kelas</p>
     </div>
   </div>
 </section>
@@ -251,7 +253,7 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
     <h2 style="text-align:center; margin-bottom:2rem;">Tiga Nilai HEI</h2>
     <div class="values__list">
 
-      <!-- Harmony -->
+      <!-- Harmony: image left, text right -->
       <article class="value-card">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Gear terhubung mewakili Harmony">
@@ -273,14 +275,14 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
           <ul class="value-card__behaviors">
             <li>Aktif mendengarkan pendapat teman kelompok yang berbeda pandangan saat diskusi.</li>
             <li>Menggunakan bahasa yang santun di channel kelas WhatsApp/Discord, termasuk saat berdebat.</li>
-            <li>Menghormati jadwal dan waktu kerja orang lain — datang tepat waktu.</li>
+            <li>Menghormati jadwal dan waktu kerja orang lain - datang tepat waktu.</li>
             <li>Berkontribusi dalam kegiatan gotong royong kampus tanpa pamrih.</li>
           </ul>
           <p class="value-card__anti">Hindari: bully pendapat minoritas, eksklusi teman dari kelompok, konflik ego di organisasi.</p>
         </div>
       </article>
 
-      <!-- Excellence -->
+      <!-- Excellence: text left, image right (alternation 2 of 2) -->
       <article class="value-card value-card--reverse">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Jam tungku proses mewakili Excellence">
@@ -308,8 +310,8 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
         </div>
       </article>
 
-      <!-- Integrity -->
-      <article class="value-card">
+      <!-- Integrity: breaks zigzag - full-width vertical stack -->
+      <article class="value-card value-card--stack">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Kunci dan skala ornamental mewakili Integrity">
             <path d="M60 110 L60 140 L75 140 L75 110 Z M85 110 L85 140 L100 140 L100 110 Z" fill="none" stroke="var(--color-brass)" stroke-width="4" />
@@ -343,32 +345,28 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
   <div class="container refleksi__inner">
     <h2>Refleksi Singkat</h2>
     <div class="refleksi__questions">
-      <blockquote>Pekan ini, kapan terakhir kamu benar-benar mendengarkan pendapat teman yang berbeda dari kamu? <cite style="display:block; margin-top:0.5rem; font-size:0.85rem; font-family:var(--font-mono); font-style:normal; color:var(--color-sepia);">— Harmony</cite></blockquote>
-      <blockquote>Tugas terakhir yang kamu kumpulkan, apakah itu yang terbaik yang bisa kamu berikan? <cite style="display:block; margin-top:0.5rem; font-size:0.85rem; font-family:var(--font-mono); font-style:normal; color:var(--color-sepia);">— Excellence</cite></blockquote>
-      <blockquote>Apakah komitmen yang kamu buat pada kelompok masih kamu tepati sampai saat ini? <cite style="display:block; margin-top:0.5rem; font-size:0.85rem; font-family:var(--font-mono); font-style:normal; color:var(--color-sepia);">— Integrity</cite></blockquote>
+      <blockquote>Pekan ini, kapan terakhir kamu benar-benar mendengarkan pendapat teman yang berbeda dari kamu? <cite>- Harmony</cite></blockquote>
+      <blockquote>Tugas terakhir yang kamu kumpulkan, apakah itu yang terbaik yang bisa kamu berikan? <cite>- Excellence</cite></blockquote>
+      <blockquote>Apakah komitmen yang kamu buat pada kelompok masih kamu tepati sampai saat ini? <cite>- Integrity</cite></blockquote>
     </div>
   </div>
 </section>
 
 <section class="cta" id="cta">
-  <div class="container">
+  <div class="container cta__inner">
     <h2>Diskusikan HEI di kelas kamu minggu ini.</h2>
     <p>Bagikan halaman ini ke grup kelas WhatsApp, server Discord BEM, atau ajarkan sebagai pembuka sesi refleksi nilai bersama dosen wali.</p>
     <div class="cta__actions">
       <button class="btn btn--cta" id="btn-share-page" type="button">Bagikan halaman ini</button>
-    </div>
-    <div class="cta__links">
-      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram tim sosialisasi</a>
-      <a href="https://line.me" target="_blank" rel="noopener">Line resmi</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container footer__inner">
-    <div class="footer__credit">Dibuat oleh Tim Sosialisasi Kelas · Telkom University</div>
-    <div class="footer__source">Definisi HEI merujuk pada Buku Pedoman Mahasiswa Telkom University &mdash; silakan validasi dengan sumber resmi sebelum publikasi.</div>
-    <div class="footer__note">&copy; 2026 &middot; Halaman ini tidak menyimpan data pengunjung.</div>
+    <div class="footer__credit">Dibuat oleh Tim Sosialisasi Kelas Telkom University</div>
+    <div class="footer__source">Definisi HEI merujuk pada Buku Pedoman Mahasiswa Telkom University - silakan validasi dengan sumber resmi sebelum publikasi.</div>
+    <div class="footer__note">&copy; 2026 - Halaman ini tidak menyimpan data pengunjung.</div>
   </div>
 </footer>
 
@@ -376,7 +374,6 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
 
 <script>
 (function() {
-  var btnShare = document.getElementById('btn-share');
   var btnSharePage = document.getElementById('btn-share-page');
   var toast = document.getElementById('toast');
 
@@ -390,7 +387,6 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
     navigator.clipboard.writeText(window.location.href).then(showToast);
   }
 
-  if (btnShare) btnShare.addEventListener('click', copyUrl);
   if (btnSharePage) btnSharePage.addEventListener('click', copyUrl);
 })();
 </script>
