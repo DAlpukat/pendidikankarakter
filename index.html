@@ -102,41 +102,53 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .nav__link--active { color: var(--color-ivory); background: rgba(47,79,79,0.25); border-color: var(--color-copper); }
 
 /* ==========================================================================
-   Hero (asymmetric split, ornate brass gear)
+   Hero (asymmetric split, ornate brass gear, gas-lamp glow)
    ========================================================================== */
-.hero { position: relative; padding: clamp(3rem, 6vw, 6rem) 1.5rem; overflow: hidden; }
-.hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: var(--max-width); margin: 0 auto; }
+.hero { position: relative; padding: clamp(3rem, 6vw, 7rem) 1.5rem; overflow: hidden; background: var(--color-parchment); }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 60% 30%, rgba(173,214,230,0.16) 0%, rgba(47,79,79,0.05) 50%, var(--color-parchment) 75%); pointer-events: none; z-index: 0; }
+.hero__grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: var(--max-width); margin: 0 auto; }
 .hero__content { max-width: 44rem; }
-.hero__eyebrow { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-sepia); margin-bottom: 1rem; display: block; }
-.hero__title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.05; color: var(--color-mahogany); margin-bottom: 1rem; letter-spacing: -0.01em; }
-.hero__subtitle { font-size: 1.125rem; line-height: 1.7; color: var(--color-text-dim); max-width: 42ch; margin-bottom: 1.5rem; }
+.hero__eyebrow { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-sepia); margin-bottom: 1.25rem; display: block; }
+.hero__title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; color: var(--color-mahogany); margin-bottom: 1.25rem; letter-spacing: -0.02em; text-shadow: 0 3px 6px rgba(47,79,79,0.15); }
+.hero__rule { width: 70px; height: 4px; background: var(--color-copper); margin: 1.5rem 0 1.75rem; border-radius: 2px; box-shadow: 0 2px 6px rgba(173,214,230,0.35); }
+.hero__subtitle { font-size: 1.25rem; line-height: 1.75; color: var(--color-text-dim); max-width: 44ch; margin-bottom: 2rem; }
 .hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-weight: 600; font-size: 1rem;
-  padding: 0.85rem 1.75rem; border-radius: var(--radius); border: none; cursor: pointer;
-  text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
-  box-shadow: 0 3px 8px rgba(47,79,79,0.25);
+  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+  padding: 1rem 2rem; border-radius: var(--radius); border: none; cursor: pointer;
+  text-decoration: none; transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
+  box-shadow: 0 6px 0 rgba(47,79,79,0.35), 0 8px 20px rgba(47,79,79,0.2);
 }
 .btn--primary { background: var(--color-brass); color: var(--color-parchment); border: 2px solid var(--color-sepia); }
-.btn--primary:hover { filter: brightness(1.15); box-shadow: 0 6px 16px rgba(47,79,79,0.35); }
-.btn--primary:active { transform: translateY(-1px); }
-.btn--ghost { background: transparent; color: var(--color-mahogany); border: 2px solid var(--color-sepia); }
-.btn--ghost:hover { background: rgba(47,79,79,0.08); }
+.btn--primary:hover { filter: brightness(1.12); box-shadow: 0 8px 0 rgba(47,79,79,0.4), 0 12px 24px rgba(47,79,79,0.25); }
+.btn--primary:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(47,79,79,0.35), 0 4px 10px rgba(47,79,79,0.2); }
+.btn--ghost { background: transparent; color: var(--color-mahogany); border: 2px solid var(--color-sepia); box-shadow: none; }
+.btn--ghost:hover { background: rgba(47,79,79,0.06); }
 
-.hero__illustration { position: relative; height: 340px; display: flex; align-items: center; justify-content: center; }
+.hero__illustration { position: relative; height: 400px; display: flex; align-items: center; justify-content: center; }
 .gear { transform-origin: 50% 50%; }
-.gear__ring { fill: none; stroke: var(--color-brass); stroke-width: 5; }
-.gear__ring--outer { stroke: var(--color-sepia); stroke-width: 2.5; }
-.gear__cog { fill: none; stroke: var(--color-sepia); stroke-width: 2; stroke-linecap: round; }
+.gear__ring { fill: none; stroke: var(--color-brass); stroke-width: 6; }
+.gear__ring--outer { stroke: var(--color-sepia); stroke-width: 3; }
+.gear__cog { fill: none; stroke: var(--color-sepia); stroke-width: 2.5; stroke-linecap: round; }
 .gear__center { fill: var(--color-copper); }
+.gear__spoke { fill: none; stroke: var(--color-sepia); stroke-width: 2; }
+.glow { animation: pulse 4s ease-in-out infinite; }
 @media (prefers-reduced-motion: no-preference) {
   .gear--spin { animation: spin 12s linear infinite; }
   .gear--spin-slow { animation: spin 22s linear infinite reverse; }
   .glow { animation: pulse 4s ease-in-out infinite; }
 }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+.hero__corner { position: absolute; width: 48px; height: 48px; border: 3px solid var(--color-sepia); z-index: 3; }
+.corner--tl { top: 1.5rem; left: 1.5rem; border-right: none; border-bottom: none; }
+.corner--tr { top: 1.5rem; right: 1.5rem; border-left: none; border-bottom: none; }
+.corner--bl { bottom: 1.5rem; left: 1.5rem; border-right: none; border-top: none; }
+.corner--br { bottom: 1.5rem; right: 1.5rem; border-left: none; border-top: none; }
+@media (max-width: 768px) {
+  .hero__corner { width: 28px; height: 28px; border-width: 2px; }
+}
 .ornament { fill: none; stroke: var(--color-sepia); stroke-width: 1.5; opacity: 0.5; }
 
 /* ==========================================================================
@@ -265,23 +277,35 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
 </nav>
 
 <header class="hero" id="hero">
+  <div class="hero__corner corner--tl"></div>
+  <div class="hero__corner corner--tr"></div>
+  <div class="hero__corner corner--bl"></div>
+  <div class="hero__corner corner--br"></div>
   <div class="hero__grid">
     <div class="hero__content">
       <span class="hero__eyebrow">Sosialisasi Nilai HEI</span>
       <h1 class="hero__title">Harmony. Excellence.<br>Integrity.</h1>
+      <div class="hero__rule"></div>
       <p class="hero__subtitle">Tiga nilai yang menggerakkan keseharian kita di Telkom University - bukan slogan, tapi cara hidup.</p>
       <div class="hero__cta">
         <a href="#values" class="btn btn--primary">Pelajari ketiga nilainya</a>
       </div>
     </div>
     <div class="hero__illustration" aria-hidden="true">
-      <svg class="gear gear--spin" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Ornamen gear brass">
-        <circle cx="100" cy="100" r="48" class="gear__ring gear__ring--outer" />
-        <circle cx="100" cy="100" r="32" class="gear__ring" />
-        <circle cx="100" cy="100" r="14" class="gear__center" />
-        <path d="M100 6 M102 14 M100 186 M102 172 M8 100 L18 102 M192 100 L182 102 M142 142 Q150 150 158 142 M58 58 Q50 50 42 58 M142 58 Q150 50 158 58 M58 142 Q50 150 42 142" class="gear__cog" />
-        <path d="M82 32 Q100 20 118 32 M82 168 Q100 180 118 168 M32 82 Q20 100 32 118 M168 82 Q180 100 168 118" fill="none" stroke="var(--color-sepia)" stroke-width="2" />
-        <circle cx="100" cy="100" r="8" fill="var(--color-copper)" class="glow" />
+      <svg class="gear gear--spin" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="Ornamen gear brass">
+        <defs>
+          <radialGradient id="gearGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ADD8E6" />
+            <stop offset="100%" stop-color="#2F4F4F" />
+          </radialGradient>
+        </defs>
+        <circle cx="110" cy="110" r="54" class="gear__ring gear__ring--outer" />
+        <circle cx="110" cy="110" r="36" class="gear__ring" />
+        <circle cx="110" cy="110" r="16" class="gear__center glow" />
+        <path d="M110 8 L113 16 M110 204 L113 192 M14 110 L26 112 M206 110 L194 112 M158 158 Q166 166 176 158 M62 62 Q54 54 46 62 M158 62 Q166 54 176 62 M62 158 Q54 166 46 158" class="gear__cog" />
+        <path d="M94 38 Q110 26 126 38 M94 182 Q110 194 126 182 M38 94 Q26 110 38 126 M182 94 Q194 110 182 126" fill="none" stroke="#778899" stroke-width="2" />
+        <path d="M80 44 Q110 34 140 44 M80 176 Q110 186 140 176 M44 80 Q34 110 44 140 M176 80 Q186 110 176 140" class="gear__spoke" />
+        <path d="M20 110 Q40 70 60 80 Q80 90 110 110 Q140 130 160 110 Q180 90 200 110 Q180 130 160 130 Q140 110 110 110" fill="none" stroke="#2F4F4F" stroke-width="2" opacity="0.3" />
       </svg>
     </div>
   </div>
