@@ -137,7 +137,14 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; }
 .value-card__anti { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-mahogany); padding: 0.75rem 1rem; border-left: 3px solid var(--color-copper); background: rgba(184,115,51,0.08); border-radius: 0 var(--radius) var(--radius) 0; }
 
-.value-card--excellence .value-card__def { color: var(--color-teal); }
+/* Excellence: semua teks rata kanan, warna definisi sepia bersih */
+.value-card--excellence .value-card__text { text-align: right; }
+.value-card--excellence .value-card__badge { display: block; text-align: right; }
+.value-card--excellence .value-card__def { color: var(--color-sepia); max-width: none; text-align: right; }
+.value-card--excellence .value-card__behaviors { text-align: right; }
+.value-card--excellence .value-card__behaviors li { padding-left: 0; padding-right: 1.25rem; text-align: right; }
+.value-card--excellence .value-card__behaviors li::before { left: auto; right: 0; }
+.value-card--excellence .value-card__anti { border-left: none; border-right: 3px solid var(--color-copper); border-radius: var(--radius) 0 0 var(--radius); text-align: right; }
 .value-card--reverse .value-card__behaviors li::before { left: auto; right: 0; }
 
 /* Integrity breaks zigzag: full-width vertical stack */
@@ -188,6 +195,7 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
 @media (max-width: 768px) {
   .hero__grid, .value-card, .value-card--reverse { grid-template-columns: 1fr; }
   .value-card--reverse .value-card__text, .value-card--stack .value-card__text { text-align: left; }
+  .value-card--excellence .value-card__text, .value-card--excellence .value-card__badge, .value-card--excellence .value-card__def, .value-card--excellence .value-card__behaviors, .value-card--excellence .value-card__anti { text-align: right; }
   .value-card--stack .value-card__def { margin-left: 0; margin-right: 0; }
   .hero__title { font-size: clamp(2rem, 8vw, 3rem); }
   .nav__list { gap: 1rem; }
