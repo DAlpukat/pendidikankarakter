@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEI — Harmony, Excellence, Integrity | Telkom University</title>
+<meta name="description" content="Sosialisasi nilai HEI — Harmony, Excellence, Integrity — bagi sivitas akademik Telkom University. Tiga nilai, bukan slogan, tapi cara hidup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   Design tokens — Victorian Steampunk (design.md + prd.md section 8)
+   ========================================================================== */
+:root {
+  --color-brass: #B5A642;
+  --color-mahogany: #5C0000;
+  --color-sepia: #704214;
+  --color-parchment: #F5DEB3;
+  --color-copper: #B87333;
+  --color-teal: #008080;
+  --color-orange: #D46A00;
+  --color-ivory: #FFFFF0;
+  --color-text: #2a2420;
+  --color-text-dim: #4a3f35;
+  --radius: 0.5rem;
+  --space: 0.5rem;
+  --max-width: 1280px;
+  --gap-section: clamp(4rem, 8vw, 8rem);
+  --font-display: "IM Fell English", serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --z-base: 0;
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 500;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-parchment);
+  min-height: 100dvh;
+}
+
+a { color: var(--color-teal); text-decoration: underline; text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--color-copper); outline-offset: 2px; }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--color-mahogany); }
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+.mono { font-family: var(--font-mono); }
+.text-center { text-align: center; }
+
+/* ==========================================================================
+   Navigation (sticky)
+   ========================================================================== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  background: var(--color-brass);
+  border-bottom: 1px solid var(--color-sepia);
+}
+.nav__inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; height: 64px; }
+.nav__brand { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--color-parchment); text-decoration: none; letter-spacing: 0.02em; }
+.nav__list { display: flex; gap: 1.5rem; list-style: none; }
+.nav__link { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 500; color: var(--color-parchment); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: var(--radius); }
+.nav__link:hover, .nav__link:focus-visible { background: rgba(255,255,240,0.15); color: var(--color-ivory); }
+.nav__link--active { color: var(--color-ivory); background: rgba(92,0,0,0.15); }
+
+/* ==========================================================================
+   Hero (asymmetric)
+   ========================================================================== */
+.hero { position: relative; padding: clamp(3rem, 6vw, 6rem) 1.5rem; overflow: hidden; }
+.hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: var(--max-width); margin: 0 auto; }
+.hero__content { max-width: 48rem; }
+.hero__eyebrow { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-sepia); margin-bottom: 1rem; display: block; }
+.hero__title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.05; color: var(--color-mahogany); margin-bottom: 1rem; letter-spacing: -0.01em; }
+.hero__subtitle { font-size: 1.125rem; line-height: 1.6; color: var(--color-text-dim); max-width: 42ch; margin-bottom: 1.5rem; }
+.hero__tagline { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-teal); margin-bottom: 2rem; display: inline-block; }
+.hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+  padding: 0.75rem 1.5rem; border-radius: var(--radius); border: none; cursor: pointer;
+  text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+}
+.btn--primary { background: var(--color-brass); color: var(--color-parchment); }
+.btn--primary:hover { filter: brightness(0.92); box-shadow: 0 4px 12px rgba(92,0,0,0.15); }
+.btn--primary:active { transform: translateY(-1px); }
+.btn--ghost { background: transparent; color: var(--color-mahogany); border: 1.5px solid var(--color-sepia); }
+.btn--ghost:hover { background: rgba(92,0,0,0.05); }
+
+.hero__illustration { position: relative; height: 320px; display: flex; align-items: center; justify-content: center; }
+.gear { fill: var(--color-brass); stroke: var(--color-sepia); stroke-width: 1.5; transform-origin: 50% 50%; }
+@media (prefers-reduced-motion: no-preference) {
+  .gear--spin { animation: spin 14s linear infinite; }
+  .gear--spin-slow { animation: spin 26s linear infinite reverse; }
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ==========================================================================
+   About
+   ========================================================================== */
+.about { padding: var(--gap-section) 1.5rem; }
+.about__inner { max-width: 48rem; margin: 0 auto; }
+.about p { margin-bottom: 1.25rem; color: var(--color-text-dim); max-width: 72ch; }
+.about__letter { margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--color-copper); border-radius: var(--radius); background: var(--color-ivory); }
+.about__letter p { margin-bottom: 0.75rem; font-size: 0.95rem; }
+
+/* ==========================================================================
+   Three values (zig-zag)
+   ========================================================================== */
+.values { padding: var(--gap-section) 1.5rem; background: #f1e6cb; }
+.values__list { display: flex; flex-direction: column; gap: var(--gap-section); max-width: var(--max-width); margin: 0 auto; }
+.value-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--color-parchment); border: 1px solid var(--color-copper); border-radius: var(--radius); padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.value-card--reverse { grid-template-areas: "text image"; }
+.value-card--reverse .value-card__image { grid-area: image; }
+.value-card--reverse .value-card__text { grid-area: text; text-align: right; }
+.value-card__image { position: relative; height: 260px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--radius); }
+.value-card__illustration { width: 100%; height: 100%; object-fit: cover; display: block; }
+.value-card__badge { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-teal); display: inline-block; margin-bottom: 0.75rem; }
+.value-card h2 { font-size: 1.75rem; margin-bottom: 0.75rem; text-align: inherit; }
+.value-card__def { font-size: 1rem; line-height: 1.6; color: var(--color-text-dim); margin-bottom: 1.25rem; max-width: 34ch; }
+.value-card__behaviors { margin-bottom: 1rem; }
+.value-card__behaviors li { margin-bottom: 0.5rem; padding-left: 1.25rem; position: relative; color: var(--color-text-dim); }
+.value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; }
+.value-card__anti { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-mahogany); padding: 0.75rem 1rem; border-left: 3px solid var(--color-copper); background: rgba(184,115,51,0.08); border-radius: 0 var(--radius) var(--radius) 0; }
+
+/* ==========================================================================
+   Refleksi
+   ========================================================================== */
+.refleksi { padding: var(--gap-section) 1.5rem; }
+.refleksi__inner { max-width: 42rem; margin: 0 auto; text-align: center; }
+.refleksi h2 { font-size: 1.75rem; margin-bottom: 1.5rem; text-align: center; }
+.refleksi__questions { display: flex; flex-direction: column; gap: 1.5rem; }
+.refleksi blockquote { font-family: var(--font-display); font-style: italic; font-size: 1.125rem; color: var(--color-text-dim); padding: 1rem 1.5rem; border-left: 3px solid var(--color-brass); background: var(--color-ivory); border-radius: 0 var(--radius) var(--radius) 0; text-align: left; }
+.refleksi blockquote::before { content: "\201C"; font-size: 2rem; color: var(--color-sepia); line-height: 0; }
+
+/* ==========================================================================
+   CTA
+   ========================================================================== */
+.cta { padding: var(--gap-section) 1.5rem; background: var(--color-mahogany); color: var(--color-parchment); text-align: center; }
+.cta h2 { color: var(--color-parchment); font-size: 1.75rem; margin-bottom: 0.75rem; }
+.cta p { color: rgba(255,255,240,0.85); margin-bottom: 1.5rem; max-width: 42ch; margin-left: auto; margin-right: auto; }
+.cta__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn--cta { background: var(--color-brass); color: var(--color-parchment); }
+.btn--cta:hover { filter: brightness(0.92); }
+.cta__links { margin-top: 1.5rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+.cta__links a { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-copper); text-decoration: none; }
+.cta__links a:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px solid var(--color-sepia); }
+.footer__inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
+.footer__credit { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); }
+.footer__source { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); }
+.footer__note { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-sepia); margin-top: 0.5rem; }
+
+/* ==========================================================================
+   Toast
+   ========================================================================== */
+.toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(100px); z-index: var(--z-toast); background: var(--color-text); color: var(--color-parchment); padding: 0.75rem 1.25rem; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.875rem; opacity: 0; transition: opacity 300ms ease, transform 300ms ease; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero__grid, .value-card { grid-template-columns: 1fr; }
+  .value-card--reverse .value-card__text { text-align: left; }
+  .hero__title { font-size: clamp(2rem, 8vw, 3rem); }
+  .nav__list { gap: 1rem; }
+  .nav__link { font-size: 0.8rem; padding: 0.3rem 0.5rem; }
+  .values__list { gap: 3rem; }
+  .value-card { padding: 1.5rem; gap: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gear--spin, .gear--spin-slow { animation: none; }
+  html { scroll-behavior: auto; }
+  .toast { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Navigasi utama">
+  <div class="nav__inner">
+    <a href="#hero" class="nav__brand">HEI · Telkom University</a>
+    <ul class="nav__list">
+      <li><a href="#about" class="nav__link">Tentang</a></li>
+      <li><a href="#values" class="nav__link">Tiga Nilai</a></li>
+      <li><a href="#refleksi" class="nav__link">Refleksi</a></li>
+      <li><a href="#cta" class="nav__link">Diskusikan</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="hero">
+  <div class="hero__grid">
+    <div class="hero__content">
+      <span class="hero__eyebrow">Sosialisasi Nilai HEI</span>
+      <h1 class="hero__title">Harmony.<br>Excellence.<br>Integrity.</h1>
+      <p class="hero__subtitle">Tiga nilai yang menggerakkan keseharian kita di Telkom University — bukan slogan, tapi cara hidup.</p>
+      <span class="hero__tagline">Sebuah sosialisasi dari mahasiswa, untuk mahasiswa.</span>
+      <div class="hero__cta">
+        <a href="#values" class="btn btn--primary">Pelajari ketiga nilainya</a>
+        <button class="btn btn--ghost" id="btn-share" type="button">Bagikan ke kelas</button>
+      </div>
+    </div>
+    <div class="hero__illustration" aria-hidden="true">
+      <svg class="gear gear--spin" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Ornamen gear brass">
+        <circle cx="100" cy="100" r="45" fill="none" stroke="var(--color-brass)" stroke-width="6" />
+        <circle cx="100" cy="100" r="28" fill="none" stroke="var(--color-sepia)" stroke-width="2" />
+        <path d="M100 10 L102 20 M100 190 L102 180 M10 100 L20 102 M190 100 L180 102 M135 135 L128 128 M65 65 L72 72 M135 65 L128 72 M65 135 L72 128" stroke="var(--color-sepia)" stroke-width="2" />
+        <path d="M85 35 Q100 20 115 35 M85 165 Q100 180 115 165 M35 85 Q20 100 35 115 M165 85 Q180 100 165 115" fill="none" stroke="var(--color-sepia)" stroke-width="2" />
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="container about__inner">
+    <h2>Mengapa halaman ini ada</h2>
+    <p>Sosialisasi nilai HEI — Harmony, Excellence, Integrity — sering terbatas pada sesi orientasi awal semester atau poster statis di koridor kampus. Setelah itu, eksposur mahasiswa terhadap ketiga nilai ini menurun drastis. Halaman ini dirisikan sebagai kanal digital ringan yang bisa diakses kapan saja, oleh siapa saja, dari HP atau laptop.</p>
+    <p>Konten di bawah dirumuskan oleh mahasiswa, untuk mahasiswa, sebagai rujukan cepat sebelum kelas, organisasi, atau proyek kelompok dimulai.</p>
+    <div class="about__letter">
+      <p><strong>Dari tim penyusun:</strong> Kami berharap halaman ini membantu kamu memahami HEI bukan sebagai tiga slogan terpisah, tetapi sebagai satu kompas perilaku yang diterapkan di kelas, di organisasi, dan di setiap hari di kampus.</p>
+      <p class="mono" style="font-size:0.8rem; color:var(--color-teal); text-align:right;">— Tim Sosialisasi Kelas</p>
+    </div>
+  </div>
+</section>
+
+<section class="values" id="values">
+  <div class="container">
+    <h2 style="text-align:center; margin-bottom:2rem;">Tiga Nilai HEI</h2>
+    <div class="values__list">
+
+      <!-- Harmony -->
+      <article class="value-card">
+        <div class="value-card__image" aria-hidden="true">
+          <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Gear terhubung mewakili Harmony">
+            <circle cx="60" cy="70" r="22" fill="none" stroke="var(--color-brass)" stroke-width="4" />
+            <circle cx="140" cy="130" r="22" fill="none" stroke="var(--color-brass)" stroke-width="4" />
+            <circle cx="60" cy="70" r="8" fill="var(--color-copper)" />
+            <circle cx="140" cy="130" r="8" fill="var(--color-copper)" />
+            <path d="M82 70 Q100 60 118 70" fill="none" stroke="var(--color-sepia)" stroke-width="3" />
+            <path d="M82 130 Q100 140 118 130" fill="none" stroke="var(--color-sepia)" stroke-width="3" />
+            <path d="M38 70 L55 85 M162 130 L145 115" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round" />
+            <circle cx="70" cy="95" r="14" fill="none" stroke="var(--color-brass)" stroke-width="3" />
+            <circle cx="130" cy="105" r="14" fill="none" stroke="var(--color-brass)" stroke-width="3" />
+          </svg>
+        </div>
+        <div class="value-card__text">
+          <span class="value-card__badge">Harmony</span>
+          <h2>Harmoni</h2>
+          <p class="value-card__def">Hidup berdampingan secara harmonis, saling menghargai perbedaan, dan bekerja sama dalam keberagaman, tanpa memandang latar belakang suku, agama, atau jurusan.</p>
+          <ul class="value-card__behaviors">
+            <li>Aktif mendengarkan pendapat teman kelompok yang berbeda pandangan saat diskusi.</li>
+            <li>Menggunakan bahasa yang santun di channel kelas WhatsApp/Discord, termasuk saat berdebat.</li>
+            <li>Menghormati jadwal dan waktu kerja orang lain — datang tepat waktu.</li>
+            <li>Berkontribusi dalam kegiatan gotong royong kampus tanpa pamrih.</li>
+          </ul>
+          <p class="value-card__anti">Hindari: bully pendapat minoritas, eksklusi teman dari kelompok, konflik ego di organisasi.</p>
+        </div>
+      </article>
+
+      <!-- Excellence -->
+      <article class="value-card value-card--reverse">
+        <div class="value-card__image" aria-hidden="true">
+          <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Jam tungku proses mewakili Excellence">
+            <rect x="60" y="50" width="80" height="100" rx="8" fill="none" stroke="var(--color-brass)" stroke-width="4" />
+            <circle cx="100" cy="70" r="18" fill="none" stroke="var(--color-copper)" stroke-width="3" />
+            <circle cx="100" cy="70" r="10" fill="var(--color-copper)" />
+            <line x1="100" y1="90" x2="100" y2="140" stroke="var(--color-sepia)" stroke-width="3" />
+            <path d="M70 160 Q100 150 130 160" fill="none" stroke="var(--color-brass)" stroke-width="3" />
+            <line x1="85" y1="110" x2="115" y2="110" stroke="var(--color-copper)" stroke-width="2" />
+            <line x1="85" y1="120" x2="115" y2="120" stroke="var(--color-copper)" stroke-width="2" />
+            <line x1="85" y1="130" x2="115" y2="130" stroke="var(--color-copper)" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="value-card__text">
+          <span class="value-card__badge">Excellence</span>
+          <h2>Keunggulan</h2>
+          <p class="value-card__def">Berkomitmen terus berkembang dan memberikan yang terbaik, bukan sekadar lulus. Etos perbaikan berkelanjutan dalam akademik, organisasi, dan pengembangan diri.</p>
+          <ul class="value-card__behaviors">
+            <li>Mengerjakan tugas untuk dipahami dan bisa dijelaskan ulang, bukan hanya «selesai».</li>
+            <li>Mengambil inisiatif belajar hal baru di luar silabus, seperti course online atau sertifikasi.</li>
+            <li>Menerima feedback dari dosen dan teman secara terbuka, lalu memperbaiki.</li>
+            <li>Konsisten memberi kontribusi terbaik di proyek kelompok.</li>
+          </ul>
+          <p class="value-card__anti">Hindari: copy-paste tugas, menyerah saat menemui bug tanpa debug, «cukup lulus» sebagai target.</p>
+        </div>
+      </article>
+
+      <!-- Integrity -->
+      <article class="value-card">
+        <div class="value-card__image" aria-hidden="true">
+          <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Kunci dan skala ornamental mewakili Integrity">
+            <path d="M60 110 L60 140 L75 140 L75 110 Z M85 110 L85 140 L100 140 L100 110 Z" fill="none" stroke="var(--color-brass)" stroke-width="4" />
+            <circle cx="100" cy="60" r="30" fill="none" stroke="var(--color-brass)" stroke-width="4" />
+            <line x1="100" y1="30" x2="100" y2="90" stroke="var(--color-sepia)" stroke-width="3" />
+            <line x1="70" y1="60" x2="130" y2="60" stroke="var(--color-sepia)" stroke-width="3" />
+            <circle cx="100" cy="60" r="6" fill="var(--color-copper)" />
+            <path d="M100 30 L100 10 M100 90 L100 110 M70 60 L60 60 M130 60 L140 60" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round" />
+            <circle cx="130" cy="130" r="10" fill="none" stroke="var(--color-copper)" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="value-card__text">
+          <span class="value-card__badge">Integrity</span>
+          <h2>Integritas</h2>
+          <p class="value-card__def">Jujur, bertanggung jawab, dan konsisten antara perkataan, tindakan, dan komitmen. Fondasi kepercayaan di kelas, organisasi, dan dunia profesional.</p>
+          <ul class="value-card__behaviors">
+            <li>Tidak menyontek, tidak plagiat, tidak menyalin kode tanpa atribusi yang benar.</li>
+            <li>Mengakui kesalahan dan menanggung konsekuensinya.</li>
+            <li>Menepati komitmen ke kelompok, tidak menghilang saat deadlines.</li>
+            <li>Konsisten antara yang diucapkan di forum dan yang dilakukan di lapangan.</li>
+          </ul>
+          <p class="value-card__anti">Hindari: plagiarisme, menyalahkan anggota tim, ghosting tugas kelompok, manipulasi absensi.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="refleksi" id="refleksi">
+  <div class="container refleksi__inner">
+    <h2>Refleksi Singkat</h2>
+    <div class="refleksi__questions">
+      <blockquote>Pekan ini, kapan terakhir kamu benar-benar mendengarkan pendapat teman yang berbeda dari kamu? <cite style="display:block; margin-top:0.5rem; font-size:0.85rem; font-family:var(--font-mono); font-style:normal; color:var(--color-sepia);">— Harmony</cite></blockquote>
+      <blockquote>Tugas terakhir yang kamu kumpulkan, apakah itu yang terbaik yang bisa kamu berikan? <cite style="display:block; margin-top:0.5rem; font-size:0.85rem; font-family:var(--font-mono); font-style:normal; color:var(--color-sepia);">— Excellence</cite></blockquote>
+      <blockquote>Apakah komitmen yang kamu buat pada kelompok masih kamu tepati sampai saat ini? <cite style="display:block; margin-top:0.5rem; font-size:0.85rem; font-family:var(--font-mono); font-style:normal; color:var(--color-sepia);">— Integrity</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="container">
+    <h2>Diskusikan HEI di kelas kamu minggu ini.</h2>
+    <p>Bagikan halaman ini ke grup kelas WhatsApp, server Discord BEM, atau ajarkan sebagai pembuka sesi refleksi nilai bersama dosen wali.</p>
+    <div class="cta__actions">
+      <button class="btn btn--cta" id="btn-share-page" type="button">Bagikan halaman ini</button>
+    </div>
+    <div class="cta__links">
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram tim sosialisasi</a>
+      <a href="https://line.me" target="_blank" rel="noopener">Line resmi</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer__inner">
+    <div class="footer__credit">Dibuat oleh Tim Sosialisasi Kelas · Telkom University</div>
+    <div class="footer__source">Definisi HEI merujuk pada Buku Pedoman Mahasiswa Telkom University &mdash; silakan validasi dengan sumber resmi sebelum publikasi.</div>
+    <div class="footer__note">&copy; 2026 &middot; Halaman ini tidak menyimpan data pengunjung.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="alert" aria-live="polite">URL berhasil disalin ke papan klip</div>
+
+<script>
+(function() {
+  var btnShare = document.getElementById('btn-share');
+  var btnSharePage = document.getElementById('btn-share-page');
+  var toast = document.getElementById('toast');
+
+  function showToast() {
+    toast.classList.add('toast--show');
+    setTimeout(function() { toast.classList.remove('toast--show'); }, 2500);
+  }
+
+  function copyUrl() {
+    if (!navigator.clipboard) return;
+    navigator.clipboard.writeText(window.location.href).then(showToast);
+  }
+
+  if (btnShare) btnShare.addEventListener('click', copyUrl);
+  if (btnSharePage) btnSharePage.addEventListener('click', copyUrl);
+})();
+</script>
+
+</body>
+</html>
