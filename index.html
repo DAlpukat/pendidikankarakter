@@ -11,6 +11,7 @@
 <style>
 /* ==========================================================================
    Design tokens - Victorian Steampunk (design.md + prd.md section 8)
+   Palet dari image.png (Color Palette #64) di-rebalance ke warna gelap
    ========================================================================== */
 :root {
   --color-brass: #2F4F4F;
@@ -47,12 +48,33 @@ body {
   color: var(--color-text);
   background: var(--color-parchment);
   min-height: 100dvh;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(119,136,153,0.12) 0%, transparent 40%),
+    radial-gradient(circle at 75% 75%, rgba(47,79,79,0.10) 0%, transparent 40%);
+  background-attachment: fixed;
 }
 
 a { color: var(--color-teal); text-decoration: underline; text-underline-offset: 2px; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--color-copper); outline-offset: 2px; }
 
 h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--color-mahogany); }
+
+/* ==========================================================================
+   Page frame - ornate Victorian border
+   ========================================================================== */
+.page-frame {
+  position: relative;
+  border: 6px solid var(--color-sepia);
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 0h24v24H0z' fill='none' stroke='%23778899' stroke-width='2'/%3E%3C/svg%3E") 30 round;
+  padding: 2rem;
+  margin: 1rem auto;
+  max-width: 1320px;
+  background: var(--color-parchment);
+  box-shadow: 0 0 40px rgba(47,79,79,0.25);
+}
+@media (max-width: 768px) {
+  .page-frame { margin: 0.5rem; border-width: 3px; padding: 1rem; }
+}
 
 /* ==========================================================================
    Utilities
@@ -63,51 +85,59 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .text-center { text-align: center; }
 
 /* ==========================================================================
-   Navigation (sticky, 64px, single line desktop)
+   Navigation (sticky, brass band)
    ========================================================================== */
 .nav {
   position: sticky;
   top: 0;
   z-index: var(--z-nav);
   background: var(--color-brass);
-  border-bottom: 1px solid var(--color-sepia);
+  border-bottom: 3px double var(--color-sepia);
 }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; height: 64px; }
-.nav__brand { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--color-parchment); text-decoration: none; letter-spacing: 0.02em; }
+.nav__brand { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--color-parchment); text-decoration: none; letter-spacing: 0.03em; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
 .nav__list { display: flex; gap: 1.5rem; list-style: none; }
-.nav__link { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 500; color: var(--color-parchment); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: var(--radius); }
-.nav__link:hover, .nav__link:focus-visible { background: rgba(255,255,240,0.15); color: var(--color-ivory); }
-.nav__link--active { color: var(--color-ivory); background: rgba(47,79,79,0.15); }
+.nav__link { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 500; color: var(--color-parchment); text-decoration: none; padding: 0.5rem 0.8rem; border-radius: var(--radius); border: 1px solid transparent; }
+.nav__link:hover, .nav__link:focus-visible { background: rgba(245,245,220,0.15); color: var(--color-ivory); border-color: rgba(173,214,230,0.5); }
+.nav__link--active { color: var(--color-ivory); background: rgba(47,79,79,0.25); border-color: var(--color-copper); }
 
 /* ==========================================================================
-   Hero (asymmetric split, max 4 text elements, headline max 2 lines)
+   Hero (asymmetric split, ornate brass gear)
    ========================================================================== */
 .hero { position: relative; padding: clamp(3rem, 6vw, 6rem) 1.5rem; overflow: hidden; }
 .hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: var(--max-width); margin: 0 auto; }
-.hero__content { max-width: 48rem; }
-.hero__eyebrow { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-sepia); margin-bottom: 1rem; display: block; }
+.hero__content { max-width: 44rem; }
+.hero__eyebrow { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-sepia); margin-bottom: 1rem; display: block; }
 .hero__title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.05; color: var(--color-mahogany); margin-bottom: 1rem; letter-spacing: -0.01em; }
-.hero__subtitle { font-size: 1.125rem; line-height: 1.6; color: var(--color-text-dim); max-width: 42ch; margin-bottom: 1.5rem; }
+.hero__subtitle { font-size: 1.125rem; line-height: 1.7; color: var(--color-text-dim); max-width: 42ch; margin-bottom: 1.5rem; }
 .hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   font-family: var(--font-display); font-weight: 600; font-size: 1rem;
-  padding: 0.75rem 1.5rem; border-radius: var(--radius); border: none; cursor: pointer;
+  padding: 0.85rem 1.75rem; border-radius: var(--radius); border: none; cursor: pointer;
   text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+  box-shadow: 0 3px 8px rgba(47,79,79,0.25);
 }
-.btn--primary { background: var(--color-brass); color: var(--color-parchment); }
-.btn--primary:hover { filter: brightness(0.92); box-shadow: 0 4px 12px rgba(47,79,79,0.15); }
+.btn--primary { background: var(--color-brass); color: var(--color-parchment); border: 2px solid var(--color-sepia); }
+.btn--primary:hover { filter: brightness(1.15); box-shadow: 0 6px 16px rgba(47,79,79,0.35); }
 .btn--primary:active { transform: translateY(-1px); }
-.btn--ghost { background: transparent; color: var(--color-mahogany); border: 1.5px solid var(--color-sepia); }
-.btn--ghost:hover { background: rgba(47,79,79,0.05); }
+.btn--ghost { background: transparent; color: var(--color-mahogany); border: 2px solid var(--color-sepia); }
+.btn--ghost:hover { background: rgba(47,79,79,0.08); }
 
-.hero__illustration { position: relative; height: 320px; display: flex; align-items: center; justify-content: center; }
-.gear { fill: var(--color-brass); stroke: var(--color-sepia); stroke-width: 1.5; transform-origin: 50% 50%; }
+.hero__illustration { position: relative; height: 340px; display: flex; align-items: center; justify-content: center; }
+.gear { transform-origin: 50% 50%; }
+.gear__ring { fill: none; stroke: var(--color-brass); stroke-width: 5; }
+.gear__ring--outer { stroke: var(--color-sepia); stroke-width: 2.5; }
+.gear__cog { fill: none; stroke: var(--color-sepia); stroke-width: 2; stroke-linecap: round; }
+.gear__center { fill: var(--color-copper); }
 @media (prefers-reduced-motion: no-preference) {
-  .gear--spin { animation: spin 14s linear infinite; }
-  .gear--spin-slow { animation: spin 26s linear infinite reverse; }
+  .gear--spin { animation: spin 12s linear infinite; }
+  .gear--spin-slow { animation: spin 22s linear infinite reverse; }
+  .glow { animation: pulse 4s ease-in-out infinite; }
 }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+.ornament { fill: none; stroke: var(--color-sepia); stroke-width: 1.5; opacity: 0.5; }
 
 /* ==========================================================================
    About (vertical stack)
@@ -115,78 +145,81 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .about { padding: var(--gap-section) 1.5rem; }
 .about__inner { max-width: 48rem; margin: 0 auto; }
 .about p { margin-bottom: 1.25rem; color: var(--color-text-dim); max-width: 72ch; }
-.about__letter { margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--color-copper); border-radius: var(--radius); background: var(--color-ivory); }
+.about__letter { margin-top: 2rem; padding: 1.75rem; border: 2px solid var(--color-copper); border-radius: var(--radius); background: var(--color-ivory); box-shadow: inset 0 0 20px rgba(173,214,230,0.15); }
 .about__letter p { margin-bottom: 0.75rem; font-size: 0.95rem; }
 
 /* ==========================================================================
-   Three values (zigzag, max 2 consecutive alternations -> Integrity breaks pattern)
+   Three values (zigzag, ornate cards)
    ========================================================================== */
-.values { padding: var(--gap-section) 1.5rem; background: var(--color-parchment); }
+.values { padding: var(--gap-section) 1.5rem; }
 .values__list { display: flex; flex-direction: column; gap: var(--gap-section); max-width: var(--max-width); margin: 0 auto; }
-.value-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--color-parchment); border: 1px solid var(--color-copper); border-radius: var(--radius); padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.value-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--color-parchment); border: 3px solid var(--color-sepia); border-radius: var(--radius); padding: 2.5rem; box-shadow: 0 6px 20px rgba(47,79,79,0.12); position: relative; overflow: hidden; }
+.value-card::before { content: ""; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; border: 2px solid var(--color-copper); border-radius: calc(var(--radius) + 2px); pointer-events: none; z-index: -1; }
 .value-card--reverse { grid-template-areas: "text image"; }
 .value-card--reverse .value-card__image { grid-area: image; }
 .value-card--reverse .value-card__text { grid-area: text; text-align: right; }
-.value-card__image { position: relative; height: 260px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--radius); }
+.value-card__image { position: relative; height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: calc(var(--radius) - 0.1rem); border: 2px solid var(--color-copper); }
 .value-card__illustration { width: 100%; height: 100%; object-fit: cover; display: block; }
-.value-card__badge { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-teal); display: inline-block; margin-bottom: 0.75rem; }
-.value-card h2 { font-size: 1.75rem; margin-bottom: 0.75rem; text-align: inherit; }
-.value-card__def { font-size: 1rem; line-height: 1.6; color: var(--color-text-dim); margin-bottom: 1.25rem; max-width: 34ch; }
+.value-card__badge { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-teal); display: inline-block; margin-bottom: 0.75rem; padding: 0.35rem 0.75rem; border: 1px solid var(--color-sepia); border-radius: var(--radius); background: rgba(47,79,79,0.05); }
+.value-card h2 { font-size: 1.85rem; margin-bottom: 0.75rem; text-align: inherit; }
+.value-card__def { font-size: 1rem; line-height: 1.7; color: var(--color-text-dim); margin-bottom: 1.25rem; max-width: 36ch; }
 .value-card__behaviors { margin-bottom: 1rem; }
-.value-card__behaviors li { margin-bottom: 0.5rem; padding-left: 1.25rem; position: relative; color: var(--color-text-dim); }
-.value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; }
-.value-card__anti { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-mahogany); padding: 0.75rem 1rem; border-left: 3px solid var(--color-copper); background: rgba(173,214,230,0.08); border-radius: 0 var(--radius) var(--radius) 0; }
+.value-card__behaviors li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; color: var(--color-text-dim); font-size: 0.95rem; }
+.value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; font-size: 1.1rem; }
+.value-card__anti { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-mahogany); padding: 0.85rem 1rem; border-left: 4px solid var(--color-copper); background: rgba(173,214,230,0.12); border-radius: 0 var(--radius) var(--radius) 0; }
 
-/* Excellence: semua teks rata kanan, warna definisi sepia bersih */
+/* Integrity breaks zigzag: full-width vertical stack */
+.value-card--stack { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 3rem 2rem; }
+.value-card--stack .value-card__text { text-align: center; }
+.value-card--stack .value-card__def { max-width: none; margin-left: auto; margin-right: auto; }
+.value-card--stack .value-card__image { height: 320px; }
+
+/* Excellence: all text rata kanan, warna definisi sepia */
 .value-card--excellence .value-card__text { text-align: right; }
 .value-card--excellence .value-card__badge { display: block; text-align: right; }
 .value-card--excellence .value-card__def { color: var(--color-sepia); max-width: none; text-align: right; }
 .value-card--excellence .value-card__behaviors { text-align: right; }
-.value-card--excellence .value-card__behaviors li { padding-left: 0; padding-right: 1.25rem; text-align: right; }
+.value-card--excellence .value-card__behaviors li { padding-left: 0; padding-right: 1.5rem; text-align: right; }
 .value-card--excellence .value-card__behaviors li::before { left: auto; right: 0; }
-.value-card--excellence .value-card__anti { border-left: none; border-right: 3px solid var(--color-copper); border-radius: var(--radius) 0 0 var(--radius); text-align: right; }
-.value-card--reverse .value-card__behaviors li::before { left: auto; right: 0; }
-
-/* Integrity breaks zigzag: full-width vertical stack */
-.value-card--stack { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 2.5rem 2rem; }
-.value-card--stack .value-card__text { text-align: center; }
-.value-card--stack .value-card__def { max-width: none; margin-left: auto; margin-right: auto; }
+.value-card--excellence .value-card__anti { border-left: none; border-right: 4px solid var(--color-copper); border-radius: var(--radius) 0 0 var(--radius); text-align: right; }
 
 /* ==========================================================================
-   Refleksi (centered quotes, italic descender clearance)
+   Refleksi (centered quotes, ornate blockquote)
    ========================================================================== */
 .refleksi { padding: var(--gap-section) 1.5rem; }
 .refleksi__inner { max-width: 42rem; margin: 0 auto; text-align: center; }
-.refleksi h2 { font-size: 1.75rem; margin-bottom: 1.5rem; text-align: center; }
+.refleksi h2 { font-size: 1.85rem; margin-bottom: 1.5rem; text-align: center; }
+.refleksi__divider { width: 60px; height: 3px; background: var(--color-copper); margin: 0 auto 2rem; border-radius: 2px; }
 .refleksi__questions { display: flex; flex-direction: column; gap: 1.5rem; }
-.refleksi blockquote { font-family: var(--font-display); font-style: italic; font-size: 1.125rem; line-height: 1.4; color: var(--color-text-dim); padding: 1rem 1.5rem 1.25rem; border-left: 3px solid var(--color-brass); background: var(--color-ivory); border-radius: 0 var(--radius) var(--radius) 0; text-align: left; }
-.refleksi blockquote::before { content: "\201C"; font-size: 2rem; color: var(--color-sepia); line-height: 0; }
-.refleksi cite { display: block; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono); font-style: normal; color: var(--color-sepia); }
+.refleksi blockquote { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; line-height: 1.5; color: var(--color-text-dim); padding: 1.25rem 1.75rem 1.5rem; border-left: 5px solid var(--color-brass); background: var(--color-ivory); border-radius: 0 var(--radius) var(--radius) 0; text-align: left; box-shadow: 0 4px 12px rgba(47,79,79,0.08); }
+.refleksi blockquote::before { content: "\201C"; font-size: 2.5rem; color: var(--color-sepia); line-height: 0; }
+.refleksi cite { display: block; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono); font-style: normal; color: var(--color-sepia); letter-spacing: 0.05em; }
 
 /* ==========================================================================
-   CTA (dark band, single primary CTA - no duplicate share intent)
+   CTA (dark band, single primary CTA)
    ========================================================================== */
-.cta { padding: var(--gap-section) 1.5rem; background: var(--color-mahogany); color: var(--color-parchment); text-align: center; }
-.cta__inner { max-width: 42rem; margin: 0 auto; }
-.cta h2 { color: var(--color-parchment); font-size: 1.75rem; margin-bottom: 0.75rem; text-align: center; }
-.cta p { color: rgba(255,255,240,0.85); margin-bottom: 1.5rem; }
+.cta { padding: var(--gap-section) 1.5rem; background: var(--color-brass); color: var(--color-parchment); text-align: center; position: relative; overflow: hidden; }
+.cta::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='none' stroke='rgba(173,214,230,0.08)' stroke-width='2'/%3E%3C/svg%3E"); pointer-events: none; }
+.cta__inner { max-width: 42rem; margin: 0 auto; position: relative; z-index: 1; }
+.cta h2 { color: var(--color-parchment); font-size: 1.85rem; margin-bottom: 0.75rem; text-align: center; }
+.cta p { color: rgba(245,245,220,0.85); margin-bottom: 1.75rem; }
 .cta__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn--cta { background: var(--color-brass); color: var(--color-parchment); }
-.btn--cta:hover { filter: brightness(0.92); }
+.btn--cta { background: var(--color-copper); color: var(--color-brass); font-weight: 700; }
+.btn--cta:hover { filter: brightness(1.15); box-shadow: 0 6px 16px rgba(47,79,79,0.25); }
 
 /* ==========================================================================
-   Footer (centered stack, no em-dash, no decorative dot)
+   Footer (centered stack)
    ========================================================================== */
-footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px solid var(--color-sepia); }
+footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px double var(--color-sepia); }
 .footer__inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; align-items: center; text-align: center; }
 .footer__credit { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); }
-.footer__source { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); }
-.footer__note { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-sepia); }
+.footer__source { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); max-width: 42rem; line-height: 1.5; }
+.footer__note { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-sepia); margin-top: 0.5rem; }
 
 /* ==========================================================================
    Toast
    ========================================================================== */
-.toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(100px); z-index: var(--z-toast); background: var(--color-text); color: var(--color-parchment); padding: 0.75rem 1.25rem; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.875rem; opacity: 0; transition: opacity 300ms ease, transform 300ms ease; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(100px); z-index: var(--z-toast); background: var(--color-brass); color: var(--color-parchment); padding: 0.85rem 1.5rem; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.875rem; opacity: 0; transition: opacity 300ms ease, transform 300ms ease; pointer-events: none; box-shadow: 0 6px 20px rgba(47,79,79,0.3); border: 2px solid var(--color-sepia); }
 .toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
 /* ==========================================================================
@@ -195,18 +228,21 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
 @media (max-width: 768px) {
   .hero__grid, .value-card, .value-card--reverse { grid-template-columns: 1fr; }
   .value-card--reverse .value-card__text, .value-card--stack .value-card__text { text-align: left; }
-  .value-card--excellence .value-card__text, .value-card--excellence .value-card__badge, .value-card--excellence .value-card__def, .value-card--excellence .value-card__behaviors, .value-card--excellence .value-card__anti { text-align: right; }
+  .value-card--excellence .value-card__text, .value-card--excellence .value-card__badge, .value-card--excellence .value-card__def, .value-card--excellence .value-card__behaviors, .value-card--excellence .value-card__anti { text-align: left; }
   .value-card--stack .value-card__def { margin-left: 0; margin-right: 0; }
   .hero__title { font-size: clamp(2rem, 8vw, 3rem); }
   .nav__list { gap: 1rem; }
-  .nav__link { font-size: 0.8rem; padding: 0.3rem 0.5rem; }
+  .nav__link { font-size: 0.8rem; padding: 0.35rem 0.6rem; }
   .values__list { gap: 3rem; }
-  .value-card { padding: 1.5rem; gap: 1.5rem; }
+  .value-card { padding: 1.75rem; gap: 1.75rem; }
   .value-card--stack { padding: 2rem 1.5rem; }
+  .value-card__image, .value-card--stack .value-card__image { height: 220px; }
+  .hero__illustration { height: 260px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .gear--spin, .gear--spin-slow { animation: none; }
+  .glow { animation: none; opacity: 0.7; }
   html { scroll-behavior: auto; }
   .toast { transition: none; }
 }
@@ -214,9 +250,11 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
 </head>
 <body>
 
+<div class="page-frame">
+
 <nav class="nav" aria-label="Navigasi utama">
   <div class="nav__inner">
-    <a href="#hero" class="nav__brand">HEI · Telkom University</a>
+    <a href="#hero" class="nav__brand">HEI - Telkom University</a>
     <ul class="nav__list">
       <li><a href="#about" class="nav__link">Tentang</a></li>
       <li><a href="#values" class="nav__link">Tiga Nilai</a></li>
@@ -238,10 +276,12 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
     </div>
     <div class="hero__illustration" aria-hidden="true">
       <svg class="gear gear--spin" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Ornamen gear brass">
-        <circle cx="100" cy="100" r="45" fill="none" stroke="var(--color-brass)" stroke-width="6" />
-        <circle cx="100" cy="100" r="28" fill="none" stroke="var(--color-sepia)" stroke-width="2" />
-        <path d="M100 10 L102 20 M100 190 L102 180 M10 100 L20 102 M190 100 L180 102 M135 135 L128 128 M65 65 L72 72 M135 65 L128 72 M65 135 L72 128" stroke="var(--color-sepia)" stroke-width="2" />
-        <path d="M85 35 Q100 20 115 35 M85 165 Q100 180 115 165 M35 85 Q20 100 35 115 M165 85 Q180 100 165 115" fill="none" stroke="var(--color-sepia)" stroke-width="2" />
+        <circle cx="100" cy="100" r="48" class="gear__ring gear__ring--outer" />
+        <circle cx="100" cy="100" r="32" class="gear__ring" />
+        <circle cx="100" cy="100" r="14" class="gear__center" />
+        <path d="M100 6 M102 14 M100 186 M102 172 M8 100 L18 102 M192 100 L182 102 M142 142 Q150 150 158 142 M58 58 Q50 50 42 58 M142 58 Q150 50 158 58 M58 142 Q50 150 42 142" class="gear__cog" />
+        <path d="M82 32 Q100 20 118 32 M82 168 Q100 180 118 168 M32 82 Q20 100 32 118 M168 82 Q180 100 168 118" fill="none" stroke="var(--color-sepia)" stroke-width="2" />
+        <circle cx="100" cy="100" r="8" fill="var(--color-copper)" class="glow" />
       </svg>
     </div>
   </div>
@@ -268,15 +308,16 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
       <article class="value-card">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Gear terhubung mewakili Harmony">
-            <circle cx="60" cy="70" r="22" fill="none" stroke="var(--color-brass)" stroke-width="4" />
-            <circle cx="140" cy="130" r="22" fill="none" stroke="var(--color-brass)" stroke-width="4" />
-            <circle cx="60" cy="70" r="8" fill="var(--color-copper)" />
-            <circle cx="140" cy="130" r="8" fill="var(--color-copper)" />
-            <path d="M82 70 Q100 60 118 70" fill="none" stroke="var(--color-sepia)" stroke-width="3" />
-            <path d="M82 130 Q100 140 118 130" fill="none" stroke="var(--color-sepia)" stroke-width="3" />
-            <path d="M38 70 L55 85 M162 130 L145 115" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round" />
-            <circle cx="70" cy="95" r="14" fill="none" stroke="var(--color-brass)" stroke-width="3" />
-            <circle cx="130" cy="105" r="14" fill="none" stroke="var(--color-brass)" stroke-width="3" />
+            <circle cx="60" cy="70" r="24" fill="none" stroke="var(--color-brass)" stroke-width="5" />
+            <circle cx="140" cy="130" r="24" fill="none" stroke="var(--color-brass)" stroke-width="5" />
+            <circle cx="60" cy="70" r="10" fill="var(--color-copper)" />
+            <circle cx="140" cy="130" r="10" fill="var(--color-copper)" />
+            <path d="M84 70 Q100 58 116 70" fill="none" stroke="var(--color-sepia)" stroke-width="3" stroke-linecap="round" />
+            <path d="M84 130 Q100 142 116 130" fill="none" stroke="var(--color-sepia)" stroke-width="3" stroke-linecap="round" />
+            <path d="M36 70 L54 86 M164 130 L146 114" stroke="var(--color-copper)" stroke-width="3" stroke-linecap="round" />
+            <circle cx="72" cy="96" r="16" fill="none" stroke="var(--color-brass)" stroke-width="3" />
+            <circle cx="128" cy="104" r="16" fill="none" stroke="var(--color-brass)" stroke-width="3" />
+            <path d="M86 88 Q95 88 96 92 Q96 100 86 100 Q76 100 76 92 Q76 88 86 88" fill="none" stroke="var(--color-sepia)" stroke-width="1.5" />
           </svg>
         </div>
         <div class="value-card__text">
@@ -297,14 +338,16 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
       <article class="value-card value-card--reverse value-card--excellence">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Jam tungku proses mewakili Excellence">
-            <rect x="60" y="50" width="80" height="100" rx="8" fill="none" stroke="var(--color-brass)" stroke-width="4" />
-            <circle cx="100" cy="70" r="18" fill="none" stroke="var(--color-copper)" stroke-width="3" />
-            <circle cx="100" cy="70" r="10" fill="var(--color-copper)" />
-            <line x1="100" y1="90" x2="100" y2="140" stroke="var(--color-sepia)" stroke-width="3" />
-            <path d="M70 160 Q100 150 130 160" fill="none" stroke="var(--color-brass)" stroke-width="3" />
-            <line x1="85" y1="110" x2="115" y2="110" stroke="var(--color-copper)" stroke-width="2" />
-            <line x1="85" y1="120" x2="115" y2="120" stroke="var(--color-copper)" stroke-width="2" />
-            <line x1="85" y1="130" x2="115" y2="130" stroke="var(--color-copper)" stroke-width="2" />
+            <rect x="58" y="48" width="84" height="104" rx="10" fill="none" stroke="var(--color-brass)" stroke-width="5" />
+            <circle cx="100" cy="70" r="20" fill="none" stroke="var(--color-copper)" stroke-width="4" />
+            <circle cx="100" cy="70" r="12" fill="var(--color-copper)" />
+            <line x1="100" y1="92" x2="100" y2="142" stroke="var(--color-sepia)" stroke-width="3" />
+            <path d="M68 162 Q100 150 132 162" fill="none" stroke="var(--color-brass)" stroke-width="4" stroke-linecap="round" />
+            <line x1="83" y1="108" x2="117" y2="108" stroke="var(--color-copper)" stroke-width="3" />
+            <line x1="83" y1="120" x2="117" y2="120" stroke="var(--color-copper)" stroke-width="3" />
+            <line x1="83" y1="132" x2="117" y2="132" stroke="var(--color-copper)" stroke-width="3" />
+            <circle cx="78" cy="130" r="4" fill="var(--color-copper)" />
+            <circle cx="122" cy="130" r="4" fill="var(--color-copper)" />
           </svg>
         </div>
         <div class="value-card__text">
@@ -325,13 +368,15 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
       <article class="value-card value-card--stack">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Kunci dan skala ornamental mewakili Integrity">
-            <path d="M60 110 L60 140 L75 140 L75 110 Z M85 110 L85 140 L100 140 L100 110 Z" fill="none" stroke="var(--color-brass)" stroke-width="4" />
-            <circle cx="100" cy="60" r="30" fill="none" stroke="var(--color-brass)" stroke-width="4" />
-            <line x1="100" y1="30" x2="100" y2="90" stroke="var(--color-sepia)" stroke-width="3" />
-            <line x1="70" y1="60" x2="130" y2="60" stroke="var(--color-sepia)" stroke-width="3" />
-            <circle cx="100" cy="60" r="6" fill="var(--color-copper)" />
-            <path d="M100 30 L100 10 M100 90 L100 110 M70 60 L60 60 M130 60 L140 60" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round" />
-            <circle cx="130" cy="130" r="10" fill="none" stroke="var(--color-copper)" stroke-width="2" />
+            <path d="M58 112 L58 142 L76 142 L76 112 Z M84 112 L84 142 L102 142 L102 112 Z" fill="none" stroke="var(--color-brass)" stroke-width="5" />
+            <circle cx="100" cy="58" r="32" fill="none" stroke="var(--color-brass)" stroke-width="5" />
+            <line x1="100" y1="26" x2="100" y2="90" stroke="var(--color-sepia)" stroke-width="3" />
+            <line x1="68" y1="58" x2="132" y2="58" stroke="var(--color-sepia)" stroke-width="3" />
+            <circle cx="100" cy="58" r="7" fill="var(--color-copper)" />
+            <path d="M100 26 L100 8 M100 90 L100 112 M68 58 L58 58 M132 58 L142 58" stroke="var(--color-copper)" stroke-width="2.5" stroke-linecap="round" />
+            <circle cx="132" cy="132" r="12" fill="none" stroke="var(--color-copper)" stroke-width="3" />
+            <path d="M100 58 Q120 58 132 70" fill="none" stroke="var(--color-sepia)" stroke-width="2" stroke-linecap="round" />
+            <path d="M80 120 Q90 110 100 120" fill="none" stroke="var(--color-sepia)" stroke-width="2" stroke-linecap="round" />
           </svg>
         </div>
         <div class="value-card__text">
@@ -355,6 +400,7 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
 <section class="refleksi" id="refleksi">
   <div class="container refleksi__inner">
     <h2>Refleksi Singkat</h2>
+    <div class="refleksi__divider"></div>
     <div class="refleksi__questions">
       <blockquote>Pekan ini, kapan terakhir kamu benar-benar mendengarkan pendapat teman yang berbeda dari kamu? <cite>- Harmony</cite></blockquote>
       <blockquote>Tugas terakhir yang kamu kumpulkan, apakah itu yang terbaik yang bisa kamu berikan? <cite>- Excellence</cite></blockquote>
@@ -380,6 +426,8 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
     <div class="footer__note">&copy; 2026 - Halaman ini tidak menyimpan data pengunjung.</div>
   </div>
 </footer>
+
+</div>
 
 <div class="toast" id="toast" role="alert" aria-live="polite">URL berhasil disalin ke papan klip</div>
 
