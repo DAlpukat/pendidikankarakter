@@ -243,8 +243,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .value-card--reverse { grid-template-areas: "text image"; }
 .value-card--reverse .value-card__image { grid-area: image; }
 .value-card--reverse .value-card__text { grid-area: text; text-align: right; }
-.value-card__image { position: relative; height: 320px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: calc(var(--radius) - 0.1rem); border: 3px solid var(--color-copper); }
-.value-card__illustration { width: 100%; height: 100%; object-fit: cover; display: block; }
+.value-card__image { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: calc(var(--radius) - 0.1rem); border: 3px solid var(--color-copper); max-width: 340px; margin: 0 auto; }
+.value-card__illustration { width: 100%; height: auto; display: block; }
 .value-card__badge { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-teal); display: inline-block; margin-bottom: 0.75rem; padding: 0.4rem 0.85rem; border: 1px solid var(--color-sepia); border-radius: var(--radius); background: rgba(47,79,79,0.06); }
 .value-card h2 { font-size: 1.85rem; margin-bottom: 0.75rem; text-align: inherit; }
 .value-card__def { font-size: 1rem; line-height: 1.75; color: var(--color-text-dim); margin-bottom: 1.25rem; max-width: 36ch; }
@@ -257,7 +257,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .value-card--stack { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 3.25rem 2rem; }
 .value-card--stack .value-card__text { text-align: center; }
 .value-card--stack .value-card__def { max-width: none; margin-left: auto; margin-right: auto; }
-.value-card--stack .value-card__image { height: 340px; }
+.value-card--stack .value-card__image { height: auto; }
 
 /* Excellence: all text rata kanan, warna definisi sepia */
 .value-card--excellence .value-card__text { text-align: right; }
@@ -324,7 +324,7 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 4px d
   .values__list { gap: 3rem; }
   .value-card { padding: 1.75rem; gap: 1.75rem; }
   .value-card--stack { padding: 2rem 1.5rem; }
-  .value-card__image, .value-card--stack .value-card__image { height: 240px; }
+  .value-card__image, .value-card--stack .value-card__image { height: auto; max-width: 280px; }
   .hero__illustration { height: 280px; }
 }
 
