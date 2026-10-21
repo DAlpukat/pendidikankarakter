@@ -137,6 +137,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; }
 .value-card__anti { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-mahogany); padding: 0.75rem 1rem; border-left: 3px solid var(--color-copper); background: rgba(184,115,51,0.08); border-radius: 0 var(--radius) var(--radius) 0; }
 
+.value-card--excellence .value-card__def { color: var(--color-teal); }
+.value-card--reverse .value-card__behaviors li::before { left: auto; right: 0; }
+
 /* Integrity breaks zigzag: full-width vertical stack */
 .value-card--stack { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 2.5rem 2rem; }
 .value-card--stack .value-card__text { text-align: center; }
@@ -283,7 +286,7 @@ footer { padding: 2.5rem 1.5rem; background: var(--color-ivory); border-top: 1px
       </article>
 
       <!-- Excellence: text left, image right (alternation 2 of 2) -->
-      <article class="value-card value-card--reverse">
+      <article class="value-card value-card--reverse value-card--excellence">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Jam tungku proses mewakili Excellence">
             <rect x="60" y="50" width="80" height="100" rx="8" fill="none" stroke="var(--color-brass)" stroke-width="4" />
