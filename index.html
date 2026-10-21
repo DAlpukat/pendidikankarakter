@@ -49,8 +49,8 @@ body {
   background: var(--color-parchment);
   min-height: 100dvh;
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(119,136,153,0.12) 0%, transparent 40%),
-    radial-gradient(circle at 75% 75%, rgba(47,79,79,0.10) 0%, transparent 40%);
+    radial-gradient(circle at 20% 30%, rgba(119,136,153,0.10) 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(47,79,79,0.08) 0%, transparent 45%);
   background-attachment: fixed;
 }
 
@@ -60,20 +60,44 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--color-copper); 
 h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--color-mahogany); }
 
 /* ==========================================================================
+   Texture overlay (leather / kertas tua)
+   ========================================================================== */
+.texture {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0 0h100v100H0z' fill='none' stroke='%23778899' stroke-width='1'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(45deg, transparent, transparent 9px, rgba(47,79,79,0.04) 9px, rgba(47,79,79,0.04) 10px);
+}
+
+/* ==========================================================================
    Page frame - ornate Victorian border
    ========================================================================== */
 .page-frame {
   position: relative;
-  border: 6px solid var(--color-sepia);
-  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 0h24v24H0z' fill='none' stroke='%23778899' stroke-width='2'/%3E%3C/svg%3E") 30 round;
-  padding: 2rem;
-  margin: 1rem auto;
-  max-width: 1320px;
+  border: 8px solid var(--color-sepia);
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect x='2' y='2' width='36' height='36' fill='none' stroke='%23778899' stroke-width='4'/%3E%3C/svg%3E") 30 round;
+  padding: 2.5rem;
+  margin: 1.5rem auto;
+  max-width: 1340px;
   background: var(--color-parchment);
-  box-shadow: 0 0 40px rgba(47,79,79,0.25);
+  box-shadow: 0 10px 50px rgba(47,79,79,0.30);
+  border-radius: 1.5rem;
+}
+.page-frame::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 1.5rem;
+  border: 2px solid var(--color-copper);
+  pointer-events: none;
+  z-index: -1;
 }
 @media (max-width: 768px) {
-  .page-frame { margin: 0.5rem; border-width: 3px; padding: 1rem; }
+  .page-frame { margin: 0.75rem; border-width: 4px; padding: 1.5rem; border-radius: 1rem; }
 }
 
 /* ==========================================================================
@@ -95,6 +119,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
   z-index: var(--z-nav);
   background: var(--color-brass);
   border-bottom: 3px double var(--color-sepia);
+  border-top: 3px solid transparent;
   max-width: var(--max-width);
   margin: 0 auto;
   opacity: 1;
@@ -106,7 +131,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
   max-width: calc(100% - 4rem);
   margin: 0 auto;
   border-radius: 2rem 2rem 0 0;
-  box-shadow: 0 -8px 24px rgba(47,79,79,0.35);
+  box-shadow: 0 -10px 30px rgba(47,79,79,0.35);
   border-top: 3px double var(--color-sepia);
 }
 
@@ -116,11 +141,11 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
   top: -3.5rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 55%;
+  width: 40%;
   height: 2.5rem;
-  background: rgba(47,79,79,0.30);
+  background: rgba(47,79,79,0.35);
   border-radius: 50%;
-  filter: blur(1.25rem);
+  filter: blur(1.5rem);
   z-index: -1;
   pointer-events: none;
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -137,12 +162,12 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
    Hero (asymmetric split, ornate brass gear, gas-lamp glow)
    ========================================================================== */
 .hero { position: relative; padding: clamp(3rem, 6vw, 7rem) 1.5rem; overflow: hidden; background: var(--color-parchment); }
-.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 60% 30%, rgba(173,214,230,0.16) 0%, rgba(47,79,79,0.05) 50%, var(--color-parchment) 75%); pointer-events: none; z-index: 0; }
-.hero__grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: var(--max-width); margin: 0 auto; }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 65% 25%, rgba(173,214,230,0.14) 0%, rgba(47,79,79,0.06) 45%, var(--color-parchment) 70%); pointer-events: none; z-index: 0; }
+.hero__grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: var(--max-width); margin: 0 auto; }
 .hero__content { max-width: 44rem; }
 .hero__eyebrow { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-sepia); margin-bottom: 1.25rem; display: block; }
-.hero__title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; color: var(--color-mahogany); margin-bottom: 1.25rem; letter-spacing: -0.02em; text-shadow: 0 3px 6px rgba(47,79,79,0.15); }
-.hero__rule { width: 70px; height: 4px; background: var(--color-copper); margin: 1.5rem 0 1.75rem; border-radius: 2px; box-shadow: 0 2px 6px rgba(173,214,230,0.35); }
+.hero__title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; color: var(--color-mahogany); margin-bottom: 1.25rem; letter-spacing: -0.02em; text-shadow: 0 4px 8px rgba(47,79,79,0.15); }
+.hero__rule { width: 80px; height: 4px; background: var(--color-copper); margin: 1.5rem 0 1.75rem; border-radius: 2px; box-shadow: 0 2px 6px rgba(173,214,230,0.35); }
 .hero__subtitle { font-size: 1.25rem; line-height: 1.75; color: var(--color-text-dim); max-width: 44ch; margin-bottom: 2rem; }
 .hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn {
@@ -150,21 +175,22 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
   font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
   padding: 1rem 2rem; border-radius: var(--radius); border: none; cursor: pointer;
   text-decoration: none; transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
-  box-shadow: 0 6px 0 rgba(47,79,79,0.35), 0 8px 20px rgba(47,79,79,0.2);
+  box-shadow: 0 7px 0 rgba(47,79,79,0.35), 0 10px 24px rgba(47,79,79,0.2);
 }
 .btn--primary { background: var(--color-brass); color: var(--color-parchment); border: 2px solid var(--color-sepia); }
-.btn--primary:hover { filter: brightness(1.12); box-shadow: 0 8px 0 rgba(47,79,79,0.4), 0 12px 24px rgba(47,79,79,0.25); }
-.btn--primary:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(47,79,79,0.35), 0 4px 10px rgba(47,79,79,0.2); }
+.btn--primary:hover { filter: brightness(1.12); box-shadow: 0 9px 0 rgba(47,79,79,0.4), 0 14px 28px rgba(47,79,79,0.25); }
+.btn--primary:active { transform: translateY(4px); box-shadow: 0 3px 0 rgba(47,79,79,0.35), 0 6px 14px rgba(47,79,79,0.2); }
 .btn--ghost { background: transparent; color: var(--color-mahogany); border: 2px solid var(--color-sepia); box-shadow: none; }
 .btn--ghost:hover { background: rgba(47,79,79,0.06); }
 
-.hero__illustration { position: relative; height: 400px; display: flex; align-items: center; justify-content: center; }
+.hero__illustration { position: relative; height: 420px; display: flex; align-items: center; justify-content: center; }
 .gear { transform-origin: 50% 50%; }
-.gear__ring { fill: none; stroke: var(--color-brass); stroke-width: 6; }
-.gear__ring--outer { stroke: var(--color-sepia); stroke-width: 3; }
-.gear__cog { fill: none; stroke: var(--color-sepia); stroke-width: 2.5; stroke-linecap: round; }
+.gear__ring { fill: none; stroke: var(--color-brass); stroke-width: 7; }
+.gear__ring--outer { stroke: var(--color-sepia); stroke-width: 3.5; }
+.gear__cog { fill: none; stroke: var(--color-sepia); stroke-width: 3; stroke-linecap: round; }
 .gear__center { fill: var(--color-copper); }
-.gear__spoke { fill: none; stroke: var(--color-sepia); stroke-width: 2; }
+.gear__spoke { fill: none; stroke: var(--color-sepia); stroke-width: 2.5; }
+.gear__glow-ring { fill: none; stroke: var(--color-copper); stroke-width: 2; opacity: 0.4; }
 .glow { animation: pulse 4s ease-in-out infinite; }
 @media (prefers-reduced-motion: no-preference) {
   .gear--spin { animation: spin 12s linear infinite; }
@@ -172,14 +198,14 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
   .glow { animation: pulse 4s ease-in-out infinite; }
 }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
-.hero__corner { position: absolute; width: 48px; height: 48px; border: 3px solid var(--color-sepia); z-index: 3; }
+@keyframes pulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+.hero__corner { position: absolute; width: 56px; height: 56px; border: 3px solid var(--color-sepia); z-index: 3; }
 .corner--tl { top: 1.5rem; left: 1.5rem; border-right: none; border-bottom: none; }
 .corner--tr { top: 1.5rem; right: 1.5rem; border-left: none; border-bottom: none; }
 .corner--bl { bottom: 1.5rem; left: 1.5rem; border-right: none; border-top: none; }
 .corner--br { bottom: 1.5rem; right: 1.5rem; border-left: none; border-top: none; }
 @media (max-width: 768px) {
-  .hero__corner { width: 28px; height: 28px; border-width: 2px; }
+  .hero__corner { width: 32px; height: 32px; border-width: 2px; }
 }
 .ornament { fill: none; stroke: var(--color-sepia); stroke-width: 1.5; opacity: 0.5; }
 
@@ -189,7 +215,12 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .about { padding: var(--gap-section) 1.5rem; }
 .about__inner { max-width: 48rem; margin: 0 auto; }
 .about p { margin-bottom: 1.25rem; color: var(--color-text-dim); max-width: 72ch; }
-.about__letter { margin-top: 2rem; padding: 1.75rem; border: 2px solid var(--color-copper); border-radius: var(--radius); background: var(--color-ivory); box-shadow: inset 0 0 20px rgba(173,214,230,0.15); }
+.about__letter { margin-top: 2rem; padding: 2rem; border: 2px solid var(--color-copper); border-radius: var(--radius); background: var(--color-ivory); box-shadow: inset 0 0 25px rgba(173,214,230,0.15); position: relative; overflow: hidden; }
+.about__letter::before {
+  content: "";
+  position: absolute; top: -1rem; left: -1rem; right: -1rem; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-copper), transparent);
+}
 .about__letter p { margin-bottom: 0.75rem; font-size: 0.95rem; }
 
 /* ==========================================================================
@@ -197,33 +228,42 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
    ========================================================================== */
 .values { padding: var(--gap-section) 1.5rem; }
 .values__list { display: flex; flex-direction: column; gap: var(--gap-section); max-width: var(--max-width); margin: 0 auto; }
-.value-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--color-parchment); border: 3px solid var(--color-sepia); border-radius: var(--radius); padding: 2.5rem; box-shadow: 0 6px 20px rgba(47,79,79,0.12); position: relative; overflow: hidden; }
-.value-card::before { content: ""; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; border: 2px solid var(--color-copper); border-radius: calc(var(--radius) + 2px); pointer-events: none; z-index: -1; }
+.value-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--color-parchment); border: 4px solid var(--color-sepia); border-radius: var(--radius); padding: 2.75rem; box-shadow: 0 8px 24px rgba(47,79,79,0.12); position: relative; overflow: hidden; }
+.value-card::before { content: ""; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px; border: 2px solid var(--color-copper); border-radius: calc(var(--radius) + 3px); pointer-events: none; z-index: -1; }
+.value-card__filigree {
+  position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px;
+  border: 2px solid var(--color-sepia); border-radius: 50%;
+  border-top-color: transparent; border-bottom-color: transparent;
+  opacity: 0.35; z-index: 2;
+}
+.value-card__filigree::before {
+  content: ""; position: absolute; inset: -2px; border: 1px solid var(--color-copper); border-radius: 50%; opacity: 0.5;
+}
 .value-card--reverse { grid-template-areas: "text image"; }
 .value-card--reverse .value-card__image { grid-area: image; }
 .value-card--reverse .value-card__text { grid-area: text; text-align: right; }
-.value-card__image { position: relative; height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: calc(var(--radius) - 0.1rem); border: 2px solid var(--color-copper); }
+.value-card__image { position: relative; height: 320px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: calc(var(--radius) - 0.1rem); border: 3px solid var(--color-copper); }
 .value-card__illustration { width: 100%; height: 100%; object-fit: cover; display: block; }
-.value-card__badge { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-teal); display: inline-block; margin-bottom: 0.75rem; padding: 0.35rem 0.75rem; border: 1px solid var(--color-sepia); border-radius: var(--radius); background: rgba(47,79,79,0.05); }
+.value-card__badge { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-teal); display: inline-block; margin-bottom: 0.75rem; padding: 0.4rem 0.85rem; border: 1px solid var(--color-sepia); border-radius: var(--radius); background: rgba(47,79,79,0.06); }
 .value-card h2 { font-size: 1.85rem; margin-bottom: 0.75rem; text-align: inherit; }
-.value-card__def { font-size: 1rem; line-height: 1.7; color: var(--color-text-dim); margin-bottom: 1.25rem; max-width: 36ch; }
+.value-card__def { font-size: 1rem; line-height: 1.75; color: var(--color-text-dim); margin-bottom: 1.25rem; max-width: 36ch; }
 .value-card__behaviors { margin-bottom: 1rem; }
-.value-card__behaviors li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; color: var(--color-text-dim); font-size: 0.95rem; }
-.value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; font-size: 1.1rem; }
-.value-card__anti { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-mahogany); padding: 0.85rem 1rem; border-left: 4px solid var(--color-copper); background: rgba(173,214,230,0.12); border-radius: 0 var(--radius) var(--radius) 0; }
+.value-card__behaviors li { margin-bottom: 0.5rem; padding-left: 1.75rem; position: relative; color: var(--color-text-dim); font-size: 0.95rem; }
+.value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; font-size: 1.2rem; }
+.value-card__anti { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-mahogany); padding: 1rem 1.25rem; border-left: 4px solid var(--color-copper); background: rgba(173,214,230,0.14); border-radius: 0 var(--radius) var(--radius) 0; }
 
 /* Integrity breaks zigzag: full-width vertical stack */
-.value-card--stack { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 3rem 2rem; }
+.value-card--stack { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 3.25rem 2rem; }
 .value-card--stack .value-card__text { text-align: center; }
 .value-card--stack .value-card__def { max-width: none; margin-left: auto; margin-right: auto; }
-.value-card--stack .value-card__image { height: 320px; }
+.value-card--stack .value-card__image { height: 340px; }
 
 /* Excellence: all text rata kanan, warna definisi sepia */
 .value-card--excellence .value-card__text { text-align: right; }
 .value-card--excellence .value-card__badge { display: block; text-align: right; }
 .value-card--excellence .value-card__def { color: var(--color-sepia); max-width: none; text-align: right; }
 .value-card--excellence .value-card__behaviors { text-align: right; }
-.value-card--excellence .value-card__behaviors li { padding-left: 0; padding-right: 1.5rem; text-align: right; }
+.value-card--excellence .value-card__behaviors li { padding-left: 0; padding-right: 1.75rem; text-align: right; }
 .value-card--excellence .value-card__behaviors li::before { left: auto; right: 0; }
 .value-card--excellence .value-card__anti { border-left: none; border-right: 4px solid var(--color-copper); border-radius: var(--radius) 0 0 var(--radius); text-align: right; }
 
@@ -232,12 +272,15 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
    ========================================================================== */
 .refleksi { padding: var(--gap-section) 1.5rem; }
 .refleksi__inner { max-width: 42rem; margin: 0 auto; text-align: center; }
-.refleksi h2 { font-size: 1.85rem; margin-bottom: 1.5rem; text-align: center; }
-.refleksi__divider { width: 60px; height: 3px; background: var(--color-copper); margin: 0 auto 2rem; border-radius: 2px; }
+.refleksi h2 { font-size: 1.85rem; margin-bottom: 1rem; text-align: center; }
+.refleksi__divider { width: 70px; height: 4px; background: var(--color-copper); margin: 0 auto 2.25rem; border-radius: 2px; box-shadow: 0 2px 6px rgba(173,214,230,0.35); }
 .refleksi__questions { display: flex; flex-direction: column; gap: 1.5rem; }
-.refleksi blockquote { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; line-height: 1.5; color: var(--color-text-dim); padding: 1.25rem 1.75rem 1.5rem; border-left: 5px solid var(--color-brass); background: var(--color-ivory); border-radius: 0 var(--radius) var(--radius) 0; text-align: left; box-shadow: 0 4px 12px rgba(47,79,79,0.08); }
-.refleksi blockquote::before { content: "\201C"; font-size: 2.5rem; color: var(--color-sepia); line-height: 0; }
-.refleksi cite { display: block; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono); font-style: normal; color: var(--color-sepia); letter-spacing: 0.05em; }
+.refleksi blockquote { font-family: var(--font-display); font-style: italic; font-size: 1.2rem; line-height: 1.55; color: var(--color-text-dim); padding: 1.5rem 2rem 1.75rem; border-left: 6px solid var(--color-brass); background: var(--color-ivory); border-radius: 0 var(--radius) var(--radius) 0; text-align: left; box-shadow: 0 6px 18px rgba(47,79,79,0.1); position: relative; }
+.refleksi blockquote::before {
+  content: "\201C"; position: absolute; top: 0.5rem; left: -0.75rem;
+  font-size: 3rem; color: var(--color-sepia); line-height: 0; opacity: 0.5;
+}
+.refleksi cite { display: block; margin-top: 0.75rem; font-size: 0.85rem; font-family: var(--font-mono); font-style: normal; color: var(--color-sepia); letter-spacing: 0.05em; }
 
 /* ==========================================================================
    CTA (dark band, single primary CTA)
@@ -249,12 +292,12 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--co
 .cta p { color: rgba(245,245,220,0.85); margin-bottom: 1.75rem; }
 .cta__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .btn--cta { background: var(--color-copper); color: var(--color-brass); font-weight: 700; }
-.btn--cta:hover { filter: brightness(1.15); box-shadow: 0 6px 16px rgba(47,79,79,0.25); }
+.btn--cta:hover { filter: brightness(1.15); box-shadow: 0 8px 20px rgba(47,79,79,0.25); }
 
 /* ==========================================================================
    Footer (centered stack)
    ========================================================================== */
-footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px double var(--color-sepia); }
+footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 4px double var(--color-sepia); }
 .footer__inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; align-items: center; text-align: center; }
 .footer__credit { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); }
 .footer__source { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); max-width: 42rem; line-height: 1.5; }
@@ -263,7 +306,7 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
 /* ==========================================================================
    Toast
    ========================================================================== */
-.toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(100px); z-index: var(--z-toast); background: var(--color-brass); color: var(--color-parchment); padding: 0.85rem 1.5rem; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.875rem; opacity: 0; transition: opacity 300ms ease, transform 300ms ease; pointer-events: none; box-shadow: 0 6px 20px rgba(47,79,79,0.3); border: 2px solid var(--color-sepia); }
+.toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(100px); z-index: var(--z-toast); background: var(--color-brass); color: var(--color-parchment); padding: 0.85rem 1.5rem; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.875rem; opacity: 0; transition: opacity 300ms ease, transform 300ms ease; pointer-events: none; box-shadow: 0 8px 24px rgba(47,79,79,0.3); border: 2px solid var(--color-sepia); }
 .toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
 /* ==========================================================================
@@ -280,19 +323,21 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
   .values__list { gap: 3rem; }
   .value-card { padding: 1.75rem; gap: 1.75rem; }
   .value-card--stack { padding: 2rem 1.5rem; }
-  .value-card__image, .value-card--stack .value-card__image { height: 220px; }
-  .hero__illustration { height: 260px; }
+  .value-card__image, .value-card--stack .value-card__image { height: 240px; }
+  .hero__illustration { height: 280px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .gear--spin, .gear--spin-slow { animation: none; }
-  .glow { animation: none; opacity: 0.7; }
+  .glow { animation: none; opacity: 0.6; }
   html { scroll-behavior: auto; }
   .toast { transition: none; }
 }
 </style>
 </head>
 <body>
+
+<div class="texture" aria-hidden="true"></div>
 
 <div class="nav-sentinel" aria-hidden="true"></div>
 
@@ -326,20 +371,15 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
       </div>
     </div>
     <div class="hero__illustration" aria-hidden="true">
-      <svg class="gear gear--spin" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="Ornamen gear brass">
-        <defs>
-          <radialGradient id="gearGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#ADD8E6" />
-            <stop offset="100%" stop-color="#2F4F4F" />
-          </radialGradient>
-        </defs>
-        <circle cx="110" cy="110" r="54" class="gear__ring gear__ring--outer" />
-        <circle cx="110" cy="110" r="36" class="gear__ring" />
-        <circle cx="110" cy="110" r="16" class="gear__center glow" />
-        <path d="M110 8 L113 16 M110 204 L113 192 M14 110 L26 112 M206 110 L194 112 M158 158 Q166 166 176 158 M62 62 Q54 54 46 62 M158 62 Q166 54 176 62 M62 158 Q54 166 46 158" class="gear__cog" />
-        <path d="M94 38 Q110 26 126 38 M94 182 Q110 194 126 182 M38 94 Q26 110 38 126 M182 94 Q194 110 182 126" fill="none" stroke="#778899" stroke-width="2" />
-        <path d="M80 44 Q110 34 140 44 M80 176 Q110 186 140 176 M44 80 Q34 110 44 140 M176 80 Q186 110 176 140" class="gear__spoke" />
-        <path d="M20 110 Q40 70 60 80 Q80 90 110 110 Q140 130 160 110 Q180 90 200 110 Q180 130 160 130 Q140 110 110 110" fill="none" stroke="#2F4F4F" stroke-width="2" opacity="0.3" />
+      <svg class="gear gear--spin" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Ornamen gear brass">
+        <circle cx="120" cy="120" r="60" class="gear__ring gear__ring--outer" />
+        <circle cx="120" cy="120" r="42" class="gear__ring" />
+        <circle cx="120" cy="120" r="20" class="gear__center glow" />
+        <path d="M120 12 L124 18 M120 216 L124 202 M16 120 L28 122 M224 120 L212 122 M174 174 Q182 182 192 174 M72 72 Q64 64 56 72 M174 72 Q182 64 192 72 M72 174 Q64 182 56 174" class="gear__cog" />
+        <path d="M106 46 Q120 34 134 46 M106 194 Q120 206 134 194 M46 106 Q34 120 46 134 M194 106 Q206 120 194 134" fill="none" stroke="#778899" stroke-width="2.5" />
+        <path d="M92 52 Q120 42 148 52 M92 188 Q120 198 148 188 M52 92 Q42 120 52 148 M188 92 Q198 120 188 148" class="gear__spoke" />
+        <circle cx="120" cy="120" r="14" fill="var(--color-copper)" class="glow" />
+        <circle cx="120" cy="120" r="50" class="gear__glow-ring glow" />
       </svg>
     </div>
   </div>
@@ -366,16 +406,16 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
       <article class="value-card">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Gear terhubung mewakili Harmony">
-            <circle cx="60" cy="70" r="24" fill="none" stroke="var(--color-brass)" stroke-width="5" />
-            <circle cx="140" cy="130" r="24" fill="none" stroke="var(--color-brass)" stroke-width="5" />
-            <circle cx="60" cy="70" r="10" fill="var(--color-copper)" />
-            <circle cx="140" cy="130" r="10" fill="var(--color-copper)" />
-            <path d="M84 70 Q100 58 116 70" fill="none" stroke="var(--color-sepia)" stroke-width="3" stroke-linecap="round" />
-            <path d="M84 130 Q100 142 116 130" fill="none" stroke="var(--color-sepia)" stroke-width="3" stroke-linecap="round" />
-            <path d="M36 70 L54 86 M164 130 L146 114" stroke="var(--color-copper)" stroke-width="3" stroke-linecap="round" />
-            <circle cx="72" cy="96" r="16" fill="none" stroke="var(--color-brass)" stroke-width="3" />
-            <circle cx="128" cy="104" r="16" fill="none" stroke="var(--color-brass)" stroke-width="3" />
-            <path d="M86 88 Q95 88 96 92 Q96 100 86 100 Q76 100 76 92 Q76 88 86 88" fill="none" stroke="var(--color-sepia)" stroke-width="1.5" />
+            <circle cx="60" cy="70" r="26" fill="none" stroke="var(--color-brass)" stroke-width="6" />
+            <circle cx="140" cy="130" r="26" fill="none" stroke="var(--color-brass)" stroke-width="6" />
+            <circle cx="60" cy="70" r="12" fill="var(--color-copper)" />
+            <circle cx="140" cy="130" r="12" fill="var(--color-copper)" />
+            <path d="M86 70 Q100 58 114 70" fill="none" stroke="var(--color-sepia)" stroke-width="3.5" stroke-linecap="round" />
+            <path d="M86 130 Q100 142 114 130" fill="none" stroke="var(--color-sepia)" stroke-width="3.5" stroke-linecap="round" />
+            <path d="M34 70 L54 88 M166 130 L146 112" stroke="var(--color-copper)" stroke-width="3.5" stroke-linecap="round" />
+            <circle cx="72" cy="96" r="18" fill="none" stroke="var(--color-brass)" stroke-width="3.5" />
+            <circle cx="128" cy="104" r="18" fill="none" stroke="var(--color-brass)" stroke-width="3.5" />
+            <path d="M88 90 Q96 90 98 94 Q98 102 88 102 Q78 102 78 94 Q78 90 88 90" fill="none" stroke="var(--color-sepia)" stroke-width="2" />
           </svg>
         </div>
         <div class="value-card__text">
@@ -396,16 +436,16 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
       <article class="value-card value-card--reverse value-card--excellence">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Jam tungku proses mewakili Excellence">
-            <rect x="58" y="48" width="84" height="104" rx="10" fill="none" stroke="var(--color-brass)" stroke-width="5" />
-            <circle cx="100" cy="70" r="20" fill="none" stroke="var(--color-copper)" stroke-width="4" />
-            <circle cx="100" cy="70" r="12" fill="var(--color-copper)" />
-            <line x1="100" y1="92" x2="100" y2="142" stroke="var(--color-sepia)" stroke-width="3" />
-            <path d="M68 162 Q100 150 132 162" fill="none" stroke="var(--color-brass)" stroke-width="4" stroke-linecap="round" />
-            <line x1="83" y1="108" x2="117" y2="108" stroke="var(--color-copper)" stroke-width="3" />
-            <line x1="83" y1="120" x2="117" y2="120" stroke="var(--color-copper)" stroke-width="3" />
-            <line x1="83" y1="132" x2="117" y2="132" stroke="var(--color-copper)" stroke-width="3" />
-            <circle cx="78" cy="130" r="4" fill="var(--color-copper)" />
-            <circle cx="122" cy="130" r="4" fill="var(--color-copper)" />
+            <rect x="56" y="46" width="88" height="108" rx="12" fill="none" stroke="var(--color-brass)" stroke-width="6" />
+            <circle cx="100" cy="70" r="22" fill="none" stroke="var(--color-copper)" stroke-width="5" />
+            <circle cx="100" cy="70" r="14" fill="var(--color-copper)" />
+            <line x1="100" y1="94" x2="100" y2="144" stroke="var(--color-sepia)" stroke-width="3.5" />
+            <path d="M66 164 Q100 152 134 164" fill="none" stroke="var(--color-brass)" stroke-width="4.5" stroke-linecap="round" />
+            <line x1="81" y1="108" x2="119" y2="108" stroke="var(--color-copper)" stroke-width="3.5" />
+            <line x1="81" y1="120" x2="119" y2="120" stroke="var(--color-copper)" stroke-width="3.5" />
+            <line x1="81" y1="132" x2="119" y2="132" stroke="var(--color-copper)" stroke-width="3.5" />
+            <circle cx="76" cy="130" r="5" fill="var(--color-copper)" />
+            <circle cx="124" cy="130" r="5" fill="var(--color-copper)" />
           </svg>
         </div>
         <div class="value-card__text">
@@ -426,15 +466,15 @@ footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 3px d
       <article class="value-card value-card--stack">
         <div class="value-card__image" aria-hidden="true">
           <svg class="value-card__illustration" viewBox="0 0 200 200" role="img" aria-label="Kunci dan skala ornamental mewakili Integrity">
-            <path d="M58 112 L58 142 L76 142 L76 112 Z M84 112 L84 142 L102 142 L102 112 Z" fill="none" stroke="var(--color-brass)" stroke-width="5" />
-            <circle cx="100" cy="58" r="32" fill="none" stroke="var(--color-brass)" stroke-width="5" />
-            <line x1="100" y1="26" x2="100" y2="90" stroke="var(--color-sepia)" stroke-width="3" />
-            <line x1="68" y1="58" x2="132" y2="58" stroke="var(--color-sepia)" stroke-width="3" />
-            <circle cx="100" cy="58" r="7" fill="var(--color-copper)" />
-            <path d="M100 26 L100 8 M100 90 L100 112 M68 58 L58 58 M132 58 L142 58" stroke="var(--color-copper)" stroke-width="2.5" stroke-linecap="round" />
-            <circle cx="132" cy="132" r="12" fill="none" stroke="var(--color-copper)" stroke-width="3" />
-            <path d="M100 58 Q120 58 132 70" fill="none" stroke="var(--color-sepia)" stroke-width="2" stroke-linecap="round" />
-            <path d="M80 120 Q90 110 100 120" fill="none" stroke="var(--color-sepia)" stroke-width="2" stroke-linecap="round" />
+            <path d="M56 114 L56 144 L78 144 L78 114 Z M86 114 L86 144 L108 144 L108 114 Z" fill="none" stroke="var(--color-brass)" stroke-width="6" />
+            <circle cx="100" cy="56" r="34" fill="none" stroke="var(--color-brass)" stroke-width="6" />
+            <line x1="100" y1="22" x2="100" y2="92" stroke="var(--color-sepia)" stroke-width="3.5" />
+            <line x1="66" y1="56" x2="134" y2="56" stroke="var(--color-sepia)" stroke-width="3.5" />
+            <circle cx="100" cy="56" r="8" fill="var(--color-copper)" />
+            <path d="M100 22 L100 8 M100 92 L100 114 M66 56 L56 56 M134 56 L144 56" stroke="var(--color-copper)" stroke-width="3" stroke-linecap="round" />
+            <circle cx="132" cy="132" r="14" fill="none" stroke="var(--color-copper)" stroke-width="3.5" />
+            <path d="M100 56 Q122 56 134 70" fill="none" stroke="var(--color-sepia)" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M78 120 Q90 110 100 120" fill="none" stroke="var(--color-sepia)" stroke-width="2.5" stroke-linecap="round" />
           </svg>
         </div>
         <div class="value-card__text">
