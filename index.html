@@ -1,531 +1,1356 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEI - Harmony, Excellence, Integrity | Telkom University</title>
-<meta name="description" content="Sosialisasi nilai HEI - Harmony, Excellence, Integrity - bagi sivitas akademik Telkom University. Tiga nilai, bukan slogan, tapi cara hidup.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-/* ==========================================================================
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HEI - Harmony, Excellence, Integrity | Telkom University</title>
+    <meta
+      name="description"
+      content="Sosialisasi nilai HEI - Harmony, Excellence, Integrity - bagi sivitas akademik Telkom University. Tiga nilai, bukan slogan, tapi cara hidup."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ==========================================================================
    Variabel desain - Victorian Steampunk (berdasarkan design.md dan prd.md)
    Palet warna dari image.png (Color Palette #64), disesuaikan ke tono gelap
    ========================================================================== */
-:root {
-  --color-brass: #2F4F4F;
-  --color-mahogany: #2F4F4F;
-  --color-sepia: #778899;
-  --color-parchment: #F5F5DC;
-  --color-copper: #ADD8E6;
-  --color-teal: #87CEEB;
-  --color-orange: #87CEEB;
-  --color-ivory: #F5F5DC;
-  --color-text: #2F4F4F;
-  --color-text-dim: #778899;
-  --radius: 0.5rem;
-  --max-width: 1280px;
-  --gap-section: clamp(4rem, 8vw, 8rem);
-  --font-display: "IM Fell English", serif;
-  --font-mono: "JetBrains Mono", monospace;
-  --z-base: 0;
-  --z-nav: 100;
-  --z-overlay: 200;
-  --z-modal: 300;
-  --z-toast: 500;
-}
+      :root {
+        --color-brass: #2f4f4f;
+        --color-mahogany: #2f4f4f;
+        --color-sepia: #778899;
+        --color-parchment: #f5f5dc;
+        --color-copper: #add8e6;
+        --color-teal: #87ceeb;
+        --color-orange: #87ceeb;
+        --color-ivory: #f5f5dc;
+        --color-text: #2f4f4f;
+        --color-text-dim: #778899;
+        --radius: 0.5rem;
+        --max-width: 1280px;
+        --gap-section: clamp(4rem, 8vw, 8rem);
+        --font-display: "IM Fell English", serif;
+        --font-mono: "JetBrains Mono", monospace;
+        --z-base: 0;
+        --z-nav: 100;
+        --z-overlay: 200;
+        --z-modal: 300;
+        --z-toast: 500;
+      }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
-body {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-parchment);
-  min-height: 100dvh;
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(119,136,153,0.10) 0%, transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(47,79,79,0.08) 0%, transparent 45%);
-  background-attachment: fixed;
-}
+      body {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--color-text);
+        background: var(--color-parchment);
+        min-height: 100dvh;
+        background-image:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(119, 136, 153, 0.1) 0%,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(47, 79, 79, 0.08) 0%,
+            transparent 45%
+          );
+        background-attachment: fixed;
+      }
 
-a { color: var(--color-teal); text-decoration: underline; text-underline-offset: 2px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--color-copper); outline-offset: 2px; }
+      a {
+        color: var(--color-teal);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--color-copper);
+        outline-offset: 2px;
+      }
 
-h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--color-mahogany); }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--color-mahogany);
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Overlay tekstur (kulit / kertas vintage)
    ========================================================================== */
-.texture {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.35;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0 0h100v100H0z' fill='none' stroke='%23778899' stroke-width='1'/%3E%3C/svg%3E"),
-    repeating-linear-gradient(45deg, transparent, transparent 9px, rgba(47,79,79,0.04) 9px, rgba(47,79,79,0.04) 10px);
-}
+      .texture {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0.35;
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0 0h100v100H0z' fill='none' stroke='%23778899' stroke-width='1'/%3E%3C/svg%3E"),
+          repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 9px,
+            rgba(47, 79, 79, 0.04) 9px,
+            rgba(47, 79, 79, 0.04) 10px
+          );
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Bingkai halaman - gorden Victorian hias
    ========================================================================== */
-.page-frame {
-  position: relative;
-  border: 8px solid var(--color-sepia);
-  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect x='2' y='2' width='36' height='36' fill='none' stroke='%23778899' stroke-width='4'/%3E%3C/svg%3E") 30 round;
-  padding: 2.5rem;
-  margin: 1.5rem auto;
-  max-width: 1340px;
-  background: var(--color-parchment);
-  box-shadow: 0 10px 50px rgba(47,79,79,0.30);
-  border-radius: 1.5rem;
-}
-.page-frame::before {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border-radius: 1.5rem;
-  border: 2px solid var(--color-copper);
-  pointer-events: none;
-  z-index: -1;
-}
-@media (max-width: 768px) {
-  .page-frame { margin: 0.75rem; border-width: 4px; padding: 1.5rem; border-radius: 1rem; }
-}
+      .page-frame {
+        position: relative;
+        border: 8px solid var(--color-sepia);
+        border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect x='2' y='2' width='36' height='36' fill='none' stroke='%23778899' stroke-width='4'/%3E%3C/svg%3E")
+          30 round;
+        padding: 2.5rem;
+        margin: 1.5rem auto;
+        max-width: 1340px;
+        background: var(--color-parchment);
+        box-shadow: 0 10px 50px rgba(47, 79, 79, 0.3);
+        border-radius: 1.5rem;
+      }
+      .page-frame::before {
+        content: "";
+        position: absolute;
+        inset: -8px;
+        border-radius: 1.5rem;
+        border: 2px solid var(--color-copper);
+        pointer-events: none;
+        z-index: -1;
+      }
+      @media (max-width: 768px) {
+        .page-frame {
+          margin: 0.75rem;
+          border-width: 4px;
+          padding: 1.5rem;
+          border-radius: 1rem;
+        }
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Utilitas
    ========================================================================== */
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
-.mono { font-family: var(--font-mono); }
-.text-center { text-align: center; }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .mono {
+        font-family: var(--font-mono);
+      }
+      .text-center {
+        text-align: center;
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Navigasi (tembok kuning-tua, contained biasanya, lebar penuh saat melekat)
    ========================================================================== */
-.nav-sentinel { height: 1px; }
+      .nav-sentinel {
+        height: 1px;
+      }
 
-.nav {
-  position: sticky;
-  top: 1.5rem;
-  z-index: var(--z-nav);
-  background: var(--color-brass);
-  border-bottom: 3px double var(--color-sepia);
-  border-top: 3px solid transparent;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  border-radius: 1rem;
-  opacity: 1;
-  box-shadow: 0 0 0 rgba(47,79,79,0);
-  transition: max-width 0.5s ease, border-radius 0.5s ease, box-shadow 0.4s ease;
-}
+      .nav {
+        position: sticky;
+        top: 1.5rem;
+        z-index: var(--z-nav);
+        background: var(--color-brass);
+        border-bottom: 3px double var(--color-sepia);
+        border-top: 3px solid transparent;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        border-radius: 1rem;
+        opacity: 1;
+        box-shadow: 0 0 0 rgba(47, 79, 79, 0);
+        transition:
+          max-width 0.5s ease,
+          border-radius 0.5s ease,
+          box-shadow 0.4s ease;
+      }
 
-.nav--stuck {
-  max-width: calc(100% - 4rem);
-  margin: 0 auto;
-  border-radius: 2rem 2rem 0 0;
-  box-shadow: 0 -10px 30px rgba(47,79,79,0.35);
-  border-top: 3px double var(--color-sepia);
-}
+      .nav--stuck {
+        max-width: calc(100% - 4rem);
+        margin: 0 auto;
+        border-radius: 2rem 2rem 0 0;
+        box-shadow: 0 -10px 30px rgba(47, 79, 79, 0.35);
+        border-top: 3px double var(--color-sepia);
+      }
 
-.nav--stuck::before {
-  content: "";
-  position: absolute;
-  top: -3.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40%;
-  height: 2.5rem;
-  background: rgba(47,79,79,0.35);
-  border-radius: 50%;
-  filter: blur(1.5rem);
-  z-index: -1;
-  pointer-events: none;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 1;
-}
-.nav__inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; height: 64px; }
-.nav__brand { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--color-parchment); text-decoration: none; letter-spacing: 0.03em; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.nav__list { display: flex; gap: 1.5rem; list-style: none; }
-.nav__link { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 500; color: var(--color-parchment); text-decoration: none; padding: 0.5rem 0.8rem; border-radius: var(--radius); border: 1px solid transparent; }
-.nav__link:hover, .nav__link:focus-visible { background: rgba(245,245,220,0.15); color: var(--color-ivory); border-color: rgba(173,214,230,0.5); }
-.nav__link--active { color: var(--color-ivory); background: rgba(47,79,79,0.25); border-color: var(--color-copper); }
+      .nav--stuck::before {
+        content: "";
+        position: absolute;
+        top: -3.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40%;
+        height: 2.5rem;
+        background: rgba(47, 79, 79, 0.35);
+        border-radius: 50%;
+        filter: blur(1.5rem);
+        z-index: -1;
+        pointer-events: none;
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+        opacity: 1;
+      }
+      .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        height: 64px;
+      }
+      .nav__brand {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.35rem;
+        color: var(--color-parchment);
+        text-decoration: none;
+        letter-spacing: 0.03em;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+      .nav__list {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+      }
+      .nav__link {
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--color-parchment);
+        text-decoration: none;
+        padding: 0.5rem 0.8rem;
+        border-radius: var(--radius);
+        border: 1px solid transparent;
+      }
+      .nav__link:hover,
+      .nav__link:focus-visible {
+        background: rgba(245, 245, 220, 0.15);
+        color: var(--color-ivory);
+        border-color: rgba(173, 214, 230, 0.5);
+      }
+      .nav__link--active {
+        color: var(--color-ivory);
+        background: rgba(47, 79, 79, 0.25);
+        border-color: var(--color-copper);
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Hero (split asimetris, gear hias, sorotan lampu gas)
    ========================================================================== */
-.hero { position: relative; padding: clamp(3rem, 6vw, 7rem) 1.5rem; overflow: hidden; background: var(--color-parchment); }
-.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 65% 25%, rgba(173,214,230,0.14) 0%, rgba(47,79,79,0.06) 45%, var(--color-parchment) 70%); pointer-events: none; z-index: 0; }
-.hero__grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: var(--max-width); margin: 0 auto; }
-.hero__content { max-width: 44rem; }
-.hero__eyebrow { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-sepia); margin-bottom: 1.25rem; display: block; }
-.hero__title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; color: var(--color-mahogany); margin-bottom: 1.25rem; letter-spacing: -0.02em; text-shadow: 0 4px 8px rgba(47,79,79,0.15); }
-.hero__rule { width: 80px; height: 4px; background: var(--color-copper); margin: 1.5rem 0 1.75rem; border-radius: 2px; box-shadow: 0 2px 6px rgba(173,214,230,0.35); }
-.hero__subtitle { font-size: 1.25rem; line-height: 1.75; color: var(--color-text-dim); max-width: 44ch; margin-bottom: 2rem; }
-.hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
-  padding: 1rem 2rem; border-radius: var(--radius); border: none; cursor: pointer;
-  text-decoration: none; transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
-  box-shadow: 0 7px 0 rgba(47,79,79,0.35), 0 10px 24px rgba(47,79,79,0.2);
-}
-.btn--primary { background: var(--color-brass); color: var(--color-parchment); border: 2px solid var(--color-sepia); }
-.btn--primary:hover { filter: brightness(1.12); box-shadow: 0 9px 0 rgba(47,79,79,0.4), 0 14px 28px rgba(47,79,79,0.25); }
-.btn--primary:active { transform: translateY(4px); box-shadow: 0 3px 0 rgba(47,79,79,0.35), 0 6px 14px rgba(47,79,79,0.2); }
-.btn--ghost { background: transparent; color: var(--color-mahogany); border: 2px solid var(--color-sepia); box-shadow: none; }
-.btn--ghost:hover { background: rgba(47,79,79,0.06); }
+      .hero {
+        position: relative;
+        padding: clamp(3rem, 6vw, 7rem) 1.5rem;
+        overflow: hidden;
+        background: var(--color-parchment);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 65% 25%,
+          rgba(173, 214, 230, 0.14) 0%,
+          rgba(47, 79, 79, 0.06) 45%,
+          var(--color-parchment) 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero__grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+      .hero__content {
+        max-width: 44rem;
+      }
+      .hero__eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--color-sepia);
+        margin-bottom: 1.25rem;
+        display: block;
+      }
+      .hero__title {
+        font-size: clamp(3rem, 6vw, 5rem);
+        font-weight: 700;
+        line-height: 1;
+        color: var(--color-mahogany);
+        margin-bottom: 1.25rem;
+        letter-spacing: -0.02em;
+        text-shadow: 0 4px 8px rgba(47, 79, 79, 0.15);
+      }
+      .hero__rule {
+        width: 80px;
+        height: 4px;
+        background: var(--color-copper);
+        margin: 1.5rem 0 1.75rem;
+        border-radius: 2px;
+        box-shadow: 0 2px 6px rgba(173, 214, 230, 0.35);
+      }
+      .hero__subtitle {
+        font-size: 1.25rem;
+        line-height: 1.75;
+        color: var(--color-text-dim);
+        max-width: 44ch;
+        margin-bottom: 2rem;
+      }
+      .hero__cta {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.05rem;
+        padding: 1rem 2rem;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          transform 150ms ease,
+          box-shadow 150ms ease,
+          filter 150ms ease;
+        box-shadow:
+          0 7px 0 rgba(47, 79, 79, 0.35),
+          0 10px 24px rgba(47, 79, 79, 0.2);
+      }
+      .btn--primary {
+        background: var(--color-brass);
+        color: var(--color-parchment);
+        border: 2px solid var(--color-sepia);
+      }
+      .btn--primary:hover {
+        filter: brightness(1.12);
+        box-shadow:
+          0 9px 0 rgba(47, 79, 79, 0.4),
+          0 14px 28px rgba(47, 79, 79, 0.25);
+      }
+      .btn--primary:active {
+        transform: translateY(4px);
+        box-shadow:
+          0 3px 0 rgba(47, 79, 79, 0.35),
+          0 6px 14px rgba(47, 79, 79, 0.2);
+      }
+      .btn--ghost {
+        background: transparent;
+        color: var(--color-mahogany);
+        border: 2px solid var(--color-sepia);
+        box-shadow: none;
+      }
+      .btn--ghost:hover {
+        background: rgba(47, 79, 79, 0.06);
+      }
 
-.hero__illustration { position: relative; height: 420px; display: flex; align-items: center; justify-content: center; }
-.gear { transform-origin: 50% 50%; }
-.gear__ring { fill: none; stroke: var(--color-brass); stroke-width: 7; }
-.gear__ring--outer { stroke: var(--color-sepia); stroke-width: 3.5; }
-.gear__cog { fill: none; stroke: var(--color-sepia); stroke-width: 3; stroke-linecap: round; }
-.gear__center { fill: var(--color-copper); }
-.gear__spoke { fill: none; stroke: var(--color-sepia); stroke-width: 2.5; }
-.gear__glow-ring { fill: none; stroke: var(--color-copper); stroke-width: 2; opacity: 0.4; }
-.glow { animation: pulse 4s ease-in-out infinite; }
-@media (prefers-reduced-motion: no-preference) {
-  .gear--spin { animation: spin 12s linear infinite; }
-  .gear--spin-slow { animation: spin 22s linear infinite reverse; }
-  .glow { animation: pulse 4s ease-in-out infinite; }
-}
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes pulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
-.hero__corner { position: absolute; width: 56px; height: 56px; border: 3px solid var(--color-sepia); z-index: 3; }
-.corner--tl { top: 1.5rem; left: 1.5rem; border-right: none; border-bottom: none; }
-.corner--tr { top: 1.5rem; right: 1.5rem; border-left: none; border-bottom: none; }
-.corner--bl { bottom: 1.5rem; left: 1.5rem; border-right: none; border-top: none; }
-.corner--br { bottom: 1.5rem; right: 1.5rem; border-left: none; border-top: none; }
-@media (max-width: 768px) {
-  .hero__corner { width: 32px; height: 32px; border-width: 2px; }
-}
-.ornament { fill: none; stroke: var(--color-sepia); stroke-width: 1.5; opacity: 0.5; }
+      .hero__illustration {
+        position: relative;
+        height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .gear {
+        transform-origin: 50% 50%;
+      }
+      .gear__ring {
+        fill: none;
+        stroke: var(--color-brass);
+        stroke-width: 7;
+      }
+      .gear__ring--outer {
+        stroke: var(--color-sepia);
+        stroke-width: 3.5;
+      }
+      .gear__cog {
+        fill: none;
+        stroke: var(--color-sepia);
+        stroke-width: 3;
+        stroke-linecap: round;
+      }
+      .gear__center {
+        fill: var(--color-copper);
+      }
+      .gear__spoke {
+        fill: none;
+        stroke: var(--color-sepia);
+        stroke-width: 2.5;
+      }
+      .gear__glow-ring {
+        fill: none;
+        stroke: var(--color-copper);
+        stroke-width: 2;
+        opacity: 0.4;
+      }
+      .glow {
+        animation: pulse 4s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .gear--spin {
+          animation: spin 12s linear infinite;
+        }
+        .gear--spin-slow {
+          animation: spin 22s linear infinite reverse;
+        }
+        .glow {
+          animation: pulse 4s ease-in-out infinite;
+        }
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.45;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      .hero__corner {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        border: 3px solid var(--color-sepia);
+        z-index: 3;
+      }
+      .corner--tl {
+        top: 1.5rem;
+        left: 1.5rem;
+        border-right: none;
+        border-bottom: none;
+      }
+      .corner--tr {
+        top: 1.5rem;
+        right: 1.5rem;
+        border-left: none;
+        border-bottom: none;
+      }
+      .corner--bl {
+        bottom: 1.5rem;
+        left: 1.5rem;
+        border-right: none;
+        border-top: none;
+      }
+      .corner--br {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        border-left: none;
+        border-top: none;
+      }
+      @media (max-width: 768px) {
+        .hero__corner {
+          width: 32px;
+          height: 32px;
+          border-width: 2px;
+        }
+      }
+      .ornament {
+        fill: none;
+        stroke: var(--color-sepia);
+        stroke-width: 1.5;
+        opacity: 0.5;
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    About (tumpuk vertikal)
    ========================================================================== */
-.about { padding: var(--gap-section) 1.5rem; }
-.about__inner { max-width: 48rem; margin: 0 auto; }
-.about p { margin-bottom: 1.25rem; color: var(--color-text-dim); max-width: 72ch; }
-.about__letter { margin-top: 2rem; padding: 2rem; border: 2px solid var(--color-copper); border-radius: var(--radius); background: var(--color-ivory); box-shadow: inset 0 0 25px rgba(173,214,230,0.15); position: relative; overflow: hidden; }
-.about__letter::before {
-  content: "";
-  position: absolute; top: -1rem; left: -1rem; right: -1rem; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-copper), transparent);
-}
-.about__letter p { margin-bottom: 0.75rem; font-size: 0.95rem; }
+      .about {
+        padding: var(--gap-section) 1.5rem;
+      }
+      .about__inner {
+        max-width: 48rem;
+        margin: 0 auto;
+      }
+      .about p {
+        margin-bottom: 1.25rem;
+        color: var(--color-text-dim);
+        max-width: 72ch;
+      }
+      .about__letter {
+        margin-top: 2rem;
+        padding: 2rem;
+        border: 2px solid var(--color-copper);
+        border-radius: var(--radius);
+        background: var(--color-ivory);
+        box-shadow: inset 0 0 25px rgba(173, 214, 230, 0.15);
+        position: relative;
+        overflow: hidden;
+      }
+      .about__letter::before {
+        content: "";
+        position: absolute;
+        top: -1rem;
+        left: -1rem;
+        right: -1rem;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--color-copper),
+          transparent
+        );
+      }
+      .about__letter p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Tiga nilai (layout zigzag, kartu hias)
    ========================================================================== */
-.values { padding: var(--gap-section) 1.5rem; }
-.values__list { display: flex; flex-direction: column; gap: var(--gap-section); max-width: var(--max-width); margin: 0 auto; }
-.value-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--color-parchment); border: 4px solid var(--color-sepia); border-radius: var(--radius); padding: 2.75rem; box-shadow: 0 8px 24px rgba(47,79,79,0.12); position: relative; overflow: hidden; }
-.value-card::before { content: ""; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px; border: 2px solid var(--color-copper); border-radius: calc(var(--radius) + 3px); pointer-events: none; z-index: -1; }
-.value-card__filigree {
-  position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px;
-  border: 2px solid var(--color-sepia); border-radius: 50%;
-  border-top-color: transparent; border-bottom-color: transparent;
-  opacity: 0.35; z-index: 2;
-}
-.value-card__filigree::before {
-  content: ""; position: absolute; inset: -2px; border: 1px solid var(--color-copper); border-radius: 50%; opacity: 0.5;
-}
-.value-card--reverse { grid-template-areas: "text image"; }
-.value-card--reverse .value-card__image { grid-area: image; }
-.value-card--reverse .value-card__text { grid-area: text; text-align: right; }
-.value-card__image { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: calc(var(--radius) - 0.1rem); border: 3px solid var(--color-copper); max-width: 340px; margin: 0 auto; }
-.value-card__illustration { width: 100%; height: auto; display: block; }
-.value-card__badge { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-teal); display: inline-block; margin-bottom: 0.75rem; padding: 0.4rem 0.85rem; border: 1px solid var(--color-sepia); border-radius: var(--radius); background: rgba(47,79,79,0.06); }
-.value-card h2 { font-size: 1.85rem; margin-bottom: 0.75rem; text-align: inherit; }
-.value-card__def { font-size: 1rem; line-height: 1.75; color: var(--color-text-dim); margin-bottom: 1.25rem; max-width: 36ch; }
-.value-card__behaviors { margin-bottom: 1rem; }
-.value-card__behaviors li { margin-bottom: 0.5rem; padding-left: 1.75rem; position: relative; color: var(--color-text-dim); font-size: 0.95rem; }
-.value-card__behaviors li::before { content: "\2022"; color: var(--color-copper); font-weight: 700; position: absolute; left: 0; font-size: 1.2rem; }
-.value-card__anti { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-mahogany); padding: 1rem 1.25rem; border-left: 4px solid var(--color-copper); background: rgba(173,214,230,0.14); border-radius: 0 var(--radius) var(--radius) 0; }
+      .values {
+        padding: var(--gap-section) 1.5rem;
+      }
+      .values__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-section);
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+      .value-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        background: var(--color-parchment);
+        border: 4px solid var(--color-sepia);
+        border-radius: var(--radius);
+        padding: 2.75rem;
+        box-shadow: 0 8px 24px rgba(47, 79, 79, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+      .value-card::before {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        border: 2px solid var(--color-copper);
+        border-radius: calc(var(--radius) + 3px);
+        pointer-events: none;
+        z-index: -1;
+      }
+      .value-card__filigree {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--color-sepia);
+        border-radius: 50%;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        opacity: 0.35;
+        z-index: 2;
+      }
+      .value-card__filigree::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border: 1px solid var(--color-copper);
+        border-radius: 50%;
+        opacity: 0.5;
+      }
+      .value-card--reverse {
+        grid-template-areas: "text image";
+      }
+      .value-card--reverse .value-card__image {
+        grid-area: image;
+      }
+      .value-card--reverse .value-card__text {
+        grid-area: text;
+        text-align: right;
+      }
+      .value-card__image {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: calc(var(--radius) - 0.1rem);
+        border: 3px solid var(--color-copper);
+        max-width: 340px;
+        margin: 0 auto;
+      }
+      .value-card__illustration {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .value-card__badge {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--color-teal);
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        padding: 0.4rem 0.85rem;
+        border: 1px solid var(--color-sepia);
+        border-radius: var(--radius);
+        background: rgba(47, 79, 79, 0.06);
+      }
+      .value-card h2 {
+        font-size: 1.85rem;
+        margin-bottom: 0.75rem;
+        text-align: inherit;
+      }
+      .value-card__def {
+        font-size: 1rem;
+        line-height: 1.75;
+        color: var(--color-text-dim);
+        margin-bottom: 1.25rem;
+        max-width: 36ch;
+      }
+      .value-card__behaviors {
+        margin-bottom: 1rem;
+      }
+      .value-card__behaviors li {
+        margin-bottom: 0.5rem;
+        padding-left: 1.75rem;
+        position: relative;
+        color: var(--color-text-dim);
+        font-size: 0.95rem;
+      }
+      .value-card__behaviors li::before {
+        content: "\2022";
+        color: var(--color-copper);
+        font-weight: 700;
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+      }
+      .value-card__anti {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--color-mahogany);
+        padding: 1rem 1.25rem;
+        border-left: 4px solid var(--color-copper);
+        background: rgba(173, 214, 230, 0.14);
+        border-radius: 0 var(--radius) var(--radius) 0;
+      }
 
-/* Integrity: tumpuk vertikal penuh lebar (memutus pola zigzag) */
-.value-card--stack { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 3.25rem 2rem; }
-.value-card--stack .value-card__text { text-align: center; }
-.value-card--stack .value-card__def { max-width: none; margin-left: auto; margin-right: auto; }
-.value-card--stack .value-card__image { height: auto; }
+      /* Integrity: tumpuk vertikal penuh lebar (memutus pola zigzag) */
+      .value-card--stack {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 3.25rem 2rem;
+      }
+      .value-card--stack .value-card__text {
+        text-align: center;
+      }
+      .value-card--stack .value-card__def {
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .value-card--stack .value-card__image {
+        height: auto;
+      }
 
-/* Excellence: tekanan kanan, definisi warna sepia */
-.value-card--excellence .value-card__text { text-align: right; }
-.value-card--excellence .value-card__badge { display: block; text-align: right; }
-.value-card--excellence .value-card__def { color: var(--color-sepia); max-width: none; text-align: right; }
-.value-card--excellence .value-card__behaviors { text-align: right; }
-.value-card--excellence .value-card__behaviors li { padding-left: 0; padding-right: 1.75rem; text-align: right; }
-.value-card--excellence .value-card__behaviors li::before { left: auto; right: 0; }
-.value-card--excellence .value-card__anti { border-left: none; border-right: 4px solid var(--color-copper); border-radius: var(--radius) 0 0 var(--radius); text-align: right; }
+      /* Excellence: tekanan kanan, definisi warna sepia */
+      .value-card--excellence .value-card__text {
+        text-align: right;
+      }
+      .value-card--excellence .value-card__badge {
+        display: block;
+        text-align: right;
+      }
+      .value-card--excellence .value-card__def {
+        color: var(--color-sepia);
+        max-width: none;
+        text-align: right;
+      }
+      .value-card--excellence .value-card__behaviors {
+        text-align: right;
+      }
+      .value-card--excellence .value-card__behaviors li {
+        padding-left: 0;
+        padding-right: 1.75rem;
+        text-align: right;
+      }
+      .value-card--excellence .value-card__behaviors li::before {
+        left: auto;
+        right: 0;
+      }
+      .value-card--excellence .value-card__anti {
+        border-left: none;
+        border-right: 4px solid var(--color-copper);
+        border-radius: var(--radius) 0 0 var(--radius);
+        text-align: right;
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Refleksi (kutipan tengah, blok kutip hias)
    ========================================================================== */
-.refleksi { padding: var(--gap-section) 1.5rem; }
-.refleksi__inner { max-width: 42rem; margin: 0 auto; text-align: center; }
-.refleksi h2 { font-size: 1.85rem; margin-bottom: 1rem; text-align: center; }
-.refleksi__divider { width: 70px; height: 4px; background: var(--color-copper); margin: 0 auto 2.25rem; border-radius: 2px; box-shadow: 0 2px 6px rgba(173,214,230,0.35); }
-.refleksi__questions { display: flex; flex-direction: column; gap: 1.5rem; }
-.refleksi blockquote { font-family: var(--font-display); font-style: italic; font-size: 1.2rem; line-height: 1.55; color: var(--color-text-dim); padding: 1.5rem 2rem 1.75rem; border-left: 6px solid var(--color-brass); background: var(--color-ivory); border-radius: 0 var(--radius) var(--radius) 0; text-align: left; box-shadow: 0 6px 18px rgba(47,79,79,0.1); position: relative; }
-.refleksi blockquote::before {
-  content: "\201C"; position: absolute; top: 0.5rem; left: -0.75rem;
-  font-size: 3rem; color: var(--color-sepia); line-height: 0; opacity: 0.5;
-}
-.refleksi cite { display: block; margin-top: 0.75rem; font-size: 0.85rem; font-family: var(--font-mono); font-style: normal; color: var(--color-sepia); letter-spacing: 0.05em; }
+      .refleksi {
+        padding: var(--gap-section) 1.5rem;
+      }
+      .refleksi__inner {
+        max-width: 42rem;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .refleksi h2 {
+        font-size: 1.85rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .refleksi__divider {
+        width: 70px;
+        height: 4px;
+        background: var(--color-copper);
+        margin: 0 auto 2.25rem;
+        border-radius: 2px;
+        box-shadow: 0 2px 6px rgba(173, 214, 230, 0.35);
+      }
+      .refleksi__questions {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .refleksi blockquote {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.55;
+        color: var(--color-text-dim);
+        padding: 1.5rem 2rem 1.75rem;
+        border-left: 6px solid var(--color-brass);
+        background: var(--color-ivory);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        text-align: left;
+        box-shadow: 0 6px 18px rgba(47, 79, 79, 0.1);
+        position: relative;
+      }
+      .refleksi blockquote::before {
+        content: "\201C";
+        position: absolute;
+        top: 0.5rem;
+        left: -0.75rem;
+        font-size: 3rem;
+        color: var(--color-sepia);
+        line-height: 0;
+        opacity: 0.5;
+      }
+      .refleksi cite {
+        display: block;
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        font-family: var(--font-mono);
+        font-style: normal;
+        color: var(--color-sepia);
+        letter-spacing: 0.05em;
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    CTA (gelar gelap, CTA primer tunggal)
    ========================================================================== */
-.cta { padding: var(--gap-section) 1.5rem; background: var(--color-brass); color: var(--color-parchment); text-align: center; position: relative; overflow: hidden; }
-.cta::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='none' stroke='rgba(173,214,230,0.08)' stroke-width='2'/%3E%3C/svg%3E"); pointer-events: none; }
-.cta__inner { max-width: 42rem; margin: 0 auto; position: relative; z-index: 1; }
-.cta h2 { color: var(--color-parchment); font-size: 1.85rem; margin-bottom: 0.75rem; text-align: center; }
-.cta p { color: rgba(245,245,220,0.85); margin-bottom: 1.75rem; }
-.cta__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn--cta { background: var(--color-copper); color: var(--color-brass); font-weight: 700; }
-.btn--cta:hover { filter: brightness(1.15); box-shadow: 0 8px 20px rgba(47,79,79,0.25); }
+      .cta {
+        padding: var(--gap-section) 1.5rem;
+        background: var(--color-brass);
+        color: var(--color-parchment);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='none' stroke='rgba(173,214,230,0.08)' stroke-width='2'/%3E%3C/svg%3E");
+        pointer-events: none;
+      }
+      .cta__inner {
+        max-width: 42rem;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .cta h2 {
+        color: var(--color-parchment);
+        font-size: 1.85rem;
+        margin-bottom: 0.75rem;
+        text-align: center;
+      }
+      .cta p {
+        color: rgba(245, 245, 220, 0.85);
+        margin-bottom: 1.75rem;
+      }
+      .cta__actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn--cta {
+        background: var(--color-copper);
+        color: var(--color-brass);
+        font-weight: 700;
+      }
+      .btn--cta:hover {
+        filter: brightness(1.15);
+        box-shadow: 0 8px 20px rgba(47, 79, 79, 0.25);
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Footer (tumpuk tengah)
    ========================================================================== */
-footer { padding: 3rem 1.5rem; background: var(--color-ivory); border-top: 4px double var(--color-sepia); }
-.footer__inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; align-items: center; text-align: center; }
-.footer__credit { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); }
-.footer__source { font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-dim); max-width: 42rem; line-height: 1.5; }
-.footer__note { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-sepia); margin-top: 0.5rem; }
+      footer {
+        padding: 3rem 1.5rem;
+        background: var(--color-ivory);
+        border-top: 4px double var(--color-sepia);
+      }
+      .footer__inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+        text-align: center;
+      }
+      .footer__credit {
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        color: var(--color-text-dim);
+      }
+      .footer__source {
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        color: var(--color-text-dim);
+        max-width: 42rem;
+        line-height: 1.5;
+      }
+      .footer__note {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        color: var(--color-sepia);
+        margin-top: 0.5rem;
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Notifikasi toast
    ========================================================================== */
-.toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(100px); z-index: var(--z-toast); background: var(--color-brass); color: var(--color-parchment); padding: 0.85rem 1.5rem; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.875rem; opacity: 0; transition: opacity 300ms ease, transform 300ms ease; pointer-events: none; box-shadow: 0 8px 24px rgba(47,79,79,0.3); border: 2px solid var(--color-sepia); }
-.toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }
+      .toast {
+        position: fixed;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        z-index: var(--z-toast);
+        background: var(--color-brass);
+        color: var(--color-parchment);
+        padding: 0.85rem 1.5rem;
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        opacity: 0;
+        transition:
+          opacity 300ms ease,
+          transform 300ms ease;
+        pointer-events: none;
+        box-shadow: 0 8px 24px rgba(47, 79, 79, 0.3);
+        border: 2px solid var(--color-sepia);
+      }
+      .toast--show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
 
-/* ==========================================================================
+      /* ==========================================================================
    Responsif
    ========================================================================== */
-@media (max-width: 768px) {
-  .hero__grid, .value-card, .value-card--reverse { grid-template-columns: 1fr; }
-  .value-card--reverse .value-card__text, .value-card--stack .value-card__text { text-align: left; }
-  .value-card--excellence .value-card__text, .value-card--excellence .value-card__badge, .value-card--excellence .value-card__def, .value-card--excellence .value-card__behaviors, .value-card--excellence .value-card__anti { text-align: left; }
-  .value-card--stack .value-card__def { margin-left: 0; margin-right: 0; }
-  .hero__title { font-size: clamp(2rem, 8vw, 3rem); }
-  .nav__list { gap: 1rem; }
-  .nav__link { font-size: 0.8rem; padding: 0.35rem 0.6rem; }
-  .values__list { gap: 3rem; }
-  .value-card { padding: 1.75rem; gap: 1.75rem; }
-  .value-card--stack { padding: 2rem 1.5rem; }
-  .value-card__image, .value-card--stack .value-card__image { height: auto; max-width: 280px; }
-  .hero__illustration { height: 280px; }
-}
+      @media (max-width: 768px) {
+        .hero__grid,
+        .value-card,
+        .value-card--reverse {
+          grid-template-columns: 1fr;
+        }
+        .value-card--reverse .value-card__text,
+        .value-card--stack .value-card__text {
+          text-align: left;
+        }
+        .value-card--excellence .value-card__text,
+        .value-card--excellence .value-card__badge,
+        .value-card--excellence .value-card__def,
+        .value-card--excellence .value-card__behaviors,
+        .value-card--excellence .value-card__anti {
+          text-align: left;
+        }
+        .value-card--stack .value-card__def {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .hero__title {
+          font-size: clamp(2rem, 8vw, 3rem);
+        }
+        .nav__list {
+          gap: 1rem;
+        }
+        .nav__link {
+          font-size: 0.8rem;
+          padding: 0.35rem 0.6rem;
+        }
+        .values__list {
+          gap: 3rem;
+        }
+        .value-card {
+          padding: 1.75rem;
+          gap: 1.75rem;
+        }
+        .value-card--stack {
+          padding: 2rem 1.5rem;
+        }
+        .value-card__image,
+        .value-card--stack .value-card__image {
+          height: auto;
+          max-width: 280px;
+        }
+        .hero__illustration {
+          height: 280px;
+        }
+      }
 
-@media (prefers-reduced-motion: reduce) {
-  .gear--spin, .gear--spin-slow { animation: none; }
-  .glow { animation: none; opacity: 0.6; }
-  html { scroll-behavior: auto; }
-  .toast { transition: none; }
-}
-</style>
-</head>
-<body>
+      @media (prefers-reduced-motion: reduce) {
+        .gear--spin,
+        .gear--spin-slow {
+          animation: none;
+        }
+        .glow {
+          animation: none;
+          opacity: 0.6;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+        .toast {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="texture" aria-hidden="true"></div>
 
-<div class="texture" aria-hidden="true"></div>
+    <div class="nav-sentinel" aria-hidden="true"></div>
 
-<div class="nav-sentinel" aria-hidden="true"></div>
-
-<nav class="nav" id="main-nav" aria-label="Navigasi utama">
-  <div class="nav__inner">
-    <a href="#hero" class="nav__brand">HEI - Telkom University</a>
-    <ul class="nav__list">
-      <li><a href="#about" class="nav__link">Tentang</a></li>
-      <li><a href="#values" class="nav__link">Tiga Nilai</a></li>
-      <li><a href="#refleksi" class="nav__link">Refleksi</a></li>
-      <li><a href="#cta" class="nav__link">Diskusikan</a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="page-frame">
-
-<header class="hero" id="hero">
-  <div class="hero__corner corner--tl"></div>
-  <div class="hero__corner corner--tr"></div>
-  <div class="hero__corner corner--bl"></div>
-  <div class="hero__corner corner--br"></div>
-  <div class="hero__grid">
-    <div class="hero__content">
-      <span class="hero__eyebrow">Sosialisasi Nilai HEI</span>
-      <h1 class="hero__title">Harmony. Excellence.<br>Integrity.</h1>
-      <div class="hero__rule"></div>
-      <p class="hero__subtitle">Tiga nilai yang menggerakkan keseharian kita di Telkom University - bukan slogan, tapi cara hidup.</p>
-      <div class="hero__cta">
-        <a href="#values" class="btn btn--primary">Pelajari ketiga nilainya</a>
+    <nav class="nav" id="main-nav" aria-label="Navigasi utama">
+      <div class="nav__inner">
+        <a href="#hero" class="nav__brand">HEI - Telkom University</a>
+        <ul class="nav__list">
+          <li><a href="#about" class="nav__link">Tentang</a></li>
+          <li><a href="#values" class="nav__link">Tiga Nilai</a></li>
+          <li><a href="#refleksi" class="nav__link">Refleksi</a></li>
+          <li><a href="#cta" class="nav__link">Diskusikan</a></li>
+        </ul>
       </div>
-    </div>
-    <div class="hero__illustration" aria-hidden="true">
-      <svg class="gear gear--spin" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Ornamen gear brass">
-        <circle cx="120" cy="120" r="60" class="gear__ring gear__ring--outer" />
-        <circle cx="120" cy="120" r="42" class="gear__ring" />
-        <circle cx="120" cy="120" r="20" class="gear__center glow" />
-        <path d="M120 12 L124 18 M120 216 L124 202 M16 120 L28 122 M224 120 L212 122 M174 174 Q182 182 192 174 M72 72 Q64 64 56 72 M174 72 Q182 64 192 72 M72 174 Q64 182 56 174" class="gear__cog" />
-        <path d="M106 46 Q120 34 134 46 M106 194 Q120 206 134 194 M46 106 Q34 120 46 134 M194 106 Q206 120 194 134" fill="none" stroke="#778899" stroke-width="2.5" />
-        <path d="M92 52 Q120 42 148 52 M92 188 Q120 198 148 188 M52 92 Q42 120 52 148 M188 92 Q198 120 188 148" class="gear__spoke" />
-        <circle cx="120" cy="120" r="14" fill="var(--color-copper)" class="glow" />
-        <circle cx="120" cy="120" r="50" class="gear__glow-ring glow" />
-      </svg>
-    </div>
-  </div>
-</header>
+    </nav>
 
-<section class="about" id="about">
-  <div class="container about__inner">
-    <h2>Mengapa halaman ini ada</h2>
-    <p>Sosialisasi nilai HEI - Harmony, Excellence, Integrity - sering terbatas pada sesi orientasi awal semester atau poster statis di koridor kampus. Setelah itu, eksposur mahasiswa terhadap ketiga nilai ini menurun drastis. Halaman ini dirisikan sebagai kanal digital ringan yang bisa diakses kapan saja, oleh siapa saja, dari HP atau laptop.</p>
-    <p>Konten di bawah dirumuskan oleh mahasiswa, untuk mahasiswa, sebagai rujukan cepat sebelum kelas, organisasi, atau proyek kelompok dimulai.</p>
-    <div class="about__letter">
-      <p><strong>Dari tim penyusun:</strong> Kami berharap halaman ini membantu kamu memahami HEI bukan sebagai tiga slogan terpisah, tetapi sebagai satu kompas perilaku yang diterapkan di kelas, di organisasi, dan di setiap hari di kampus.</p>
-      <p class="mono" style="font-size:0.8rem; color:var(--color-teal); text-align:right;">- Tim Sosialisasi Kelas</p>
-    </div>
-  </div>
-</section>
-
-<section class="values" id="values">
-  <div class="container">
-    <h2 style="text-align:center; margin-bottom:2rem;">Tiga Nilai HEI</h2>
-    <div class="values__list">
-
-      <!-- Harmony: gambar kiri, teks kanan -->
-      <article class="value-card">
-        <div class="value-card__image" aria-hidden="true">
-          <img src="Images/harmony.jpg" alt="Ilustrasi gear terhubung mewakili nilai Harmony" class="value-card__illustration" loading="lazy">
+    <div class="page-frame">
+      <header class="hero" id="hero">
+        <div class="hero__corner corner--tl"></div>
+        <div class="hero__corner corner--tr"></div>
+        <div class="hero__corner corner--bl"></div>
+        <div class="hero__corner corner--br"></div>
+        <div class="hero__grid">
+          <div class="hero__content">
+            <span class="hero__eyebrow">Sosialisasi Nilai HEI</span>
+            <h1 class="hero__title">Harmony. Excellence.<br />Integrity.</h1>
+            <div class="hero__rule"></div>
+            <p class="hero__subtitle">
+              Tiga nilai yang menggerakkan keseharian kita di Telkom University
+              - bukan slogan, tapi cara hidup.
+            </p>
+            <div class="hero__cta">
+              <a href="#values" class="btn btn--primary"
+                >Pelajari ketiga nilainya</a
+              >
+            </div>
+          </div>
+          <div class="hero__illustration" aria-hidden="true">
+            <svg
+              class="gear gear--spin"
+              viewBox="0 0 240 240"
+              width="240"
+              height="240"
+              role="img"
+              aria-label="Ornamen gear brass"
+            >
+              <circle
+                cx="120"
+                cy="120"
+                r="60"
+                class="gear__ring gear__ring--outer"
+              />
+              <circle cx="120" cy="120" r="42" class="gear__ring" />
+              <circle cx="120" cy="120" r="20" class="gear__center glow" />
+              <path
+                d="M120 12 L124 18 M120 216 L124 202 M16 120 L28 122 M224 120 L212 122 M174 174 Q182 182 192 174 M72 72 Q64 64 56 72 M174 72 Q182 64 192 72 M72 174 Q64 182 56 174"
+                class="gear__cog"
+              />
+              <path
+                d="M106 46 Q120 34 134 46 M106 194 Q120 206 134 194 M46 106 Q34 120 46 134 M194 106 Q206 120 194 134"
+                fill="none"
+                stroke="#778899"
+                stroke-width="2.5"
+              />
+              <path
+                d="M92 52 Q120 42 148 52 M92 188 Q120 198 148 188 M52 92 Q42 120 52 148 M188 92 Q198 120 188 148"
+                class="gear__spoke"
+              />
+              <circle
+                cx="120"
+                cy="120"
+                r="14"
+                fill="var(--color-copper)"
+                class="glow"
+              />
+              <circle cx="120" cy="120" r="50" class="gear__glow-ring glow" />
+            </svg>
+          </div>
         </div>
-        <div class="value-card__text">
-          <span class="value-card__badge">Harmony</span>
-          <h2>Harmoni</h2>
-          <p class="value-card__def">Hidup berdampingan secara harmonis, saling menghargai perbedaan, dan bekerja sama dalam keberagaman, tanpa memandang latar belakang suku, agama, atau jurusan.</p>
-          <ul class="value-card__behaviors">
-            <li>Aktif mendengarkan pendapat teman kelompok yang berbeda pandangan saat diskusi.</li>
-            <li>Menggunakan bahasa yang santun di channel kelas WhatsApp/Discord, termasuk saat berdebat.</li>
-            <li>Menghormati jadwal dan waktu kerja orang lain - datang tepat waktu.</li>
-            <li>Berkontribusi dalam kegiatan gotong royong kampus tanpa pamrih.</li>
-          </ul>
-          <p class="value-card__anti">Hindari: bully pendapat minoritas, eksklusi teman dari kelompok, konflik ego di organisasi.</p>
-        </div>
-      </article>
+      </header>
 
-      <!-- Excellence: teks kiri, gambar kanan -->
-      <article class="value-card value-card--reverse value-card--excellence">
-        <div class="value-card__image" aria-hidden="true">
-          <img src="Images/excellence.jpg" alt="Ilustrasi jam tungku proses mewakili nilai Excellence" class="value-card__illustration" loading="lazy">
+      <section class="about" id="about">
+        <div class="container about__inner">
+          <h2>Mengapa halaman ini ada</h2>
+          <p>
+            Sosialisasi nilai HEI - Harmony, Excellence, Integrity - sering
+            terbatas pada sesi orientasi awal semester atau poster statis di
+            koridor kampus. Setelah itu, eksposur mahasiswa terhadap ketiga
+            nilai ini menurun drastis. Halaman ini dirisikan sebagai kanal
+            digital ringan yang bisa diakses kapan saja, oleh siapa saja, dari
+            HP atau laptop.
+          </p>
+          <p>
+            Konten di bawah dirumuskan oleh mahasiswa, untuk mahasiswa, sebagai
+            rujukan cepat sebelum kelas, organisasi, atau proyek kelompok
+            dimulai.
+          </p>
+          <div class="about__letter">
+            <p>
+              <strong>Dari tim penyusun:</strong> Kami berharap halaman ini
+              membantu kamu memahami HEI bukan sebagai tiga slogan terpisah,
+              tetapi sebagai satu kompas perilaku yang diterapkan di kelas, di
+              organisasi, dan di setiap hari di kampus.
+            </p>
+            <p
+              class="mono"
+              style="
+                font-size: 0.8rem;
+                color: var(--color-teal);
+                text-align: right;
+              "
+            >
+              - Tim Sosialisasi Kelas
+            </p>
+          </div>
         </div>
-        <div class="value-card__text">
-          <span class="value-card__badge">Excellence</span>
-          <h2>Keunggulan</h2>
-          <p class="value-card__def">Berkomitmen terus berkembang dan memberikan yang terbaik, bukan sekadar lulus. Etos perbaikan berkelanjutan dalam akademik, organisasi, dan pengembangan diri.</p>
-          <ul class="value-card__behaviors">
-            <li>Mengerjakan tugas untuk dipahami dan bisa dijelaskan ulang, bukan hanya «selesai».</li>
-            <li>Mengambil inisiatif belajar hal baru di luar silabus, seperti course online atau sertifikasi.</li>
-            <li>Menerima feedback dari dosen dan teman secara terbuka, lalu memperbaiki.</li>
-            <li>Konsisten memberi kontribusi terbaik di proyek kelompok.</li>
-          </ul>
-          <p class="value-card__anti">Hindari: copy-paste tugas, menyerah saat menemui bug tanpa debug, «cukup lulus» sebagai target.</p>
-        </div>
-      </article>
+      </section>
 
-      <!-- Integrity: tumpuk vertikal penuh lebar -->
-      <article class="value-card value-card--stack">
-        <div class="value-card__image" aria-hidden="true">
-          <img src="Images/integrity.jpg" alt="Ilustrasi kunci dan skala ornamental mewakili nilai Integrity" class="value-card__illustration" loading="lazy">
-        </div>
-        <div class="value-card__text">
-          <span class="value-card__badge">Integrity</span>
-          <h2>Integritas</h2>
-          <p class="value-card__def">Jujur, bertanggung jawab, dan konsisten antara perkataan, tindakan, dan komitmen. Fondasi kepercayaan di kelas, organisasi, dan dunia profesional.</p>
-          <ul class="value-card__behaviors">
-            <li>Tidak menyontek, tidak plagiat, tidak menyalin kode tanpa atribusi yang benar.</li>
-            <li>Mengakui kesalahan dan menanggung konsekuensinya.</li>
-            <li>Menepati komitmen ke kelompok, tidak menghilang saat deadlines.</li>
-            <li>Konsisten antara yang diucapkan di forum dan yang dilakukan di lapangan.</li>
-          </ul>
-          <p class="value-card__anti">Hindari: plagiarisme, menyalahkan anggota tim, ghosting tugas kelompok, manipulasi absensi.</p>
-        </div>
-      </article>
+      <section class="values" id="values">
+        <div class="container">
+          <h2 style="text-align: center; margin-bottom: 2rem">
+            Tiga Nilai HEI
+          </h2>
+          <div class="values__list">
+            <!-- Harmony: gambar kiri, teks kanan -->
+            <article class="value-card">
+              <div class="value-card__image" aria-hidden="true">
+                <img
+                  src="Images/harmony.jpg"
+                  alt="Ilustrasi gear terhubung mewakili nilai Harmony"
+                  class="value-card__illustration"
+                  loading="lazy"
+                />
+              </div>
+              <div class="value-card__text">
+                <span class="value-card__badge">Harmony</span>
+                <h2>Harmoni</h2>
+                <p class="value-card__def">
+                  Hidup berdampingan secara harmonis, saling menghargai
+                  perbedaan, dan bekerja sama dalam keberagaman, tanpa memandang
+                  latar belakang suku, agama, atau jurusan.
+                </p>
+                <ul class="value-card__behaviors">
+                  <li>
+                    Aktif mendengarkan pendapat teman kelompok yang berbeda
+                    pandangan saat diskusi.
+                  </li>
+                  <li>
+                    Menggunakan bahasa yang santun di channel kelas
+                    WhatsApp/Discord, termasuk saat berdebat.
+                  </li>
+                  <li>
+                    Menghormati jadwal dan waktu kerja orang lain - datang tepat
+                    waktu.
+                  </li>
+                  <li>
+                    Berkontribusi dalam kegiatan gotong royong kampus tanpa
+                    pamrih.
+                  </li>
+                </ul>
+                <p class="value-card__anti">
+                  Hindari: bully pendapat minoritas, eksklusi teman dari
+                  kelompok, konflik ego di organisasi.
+                </p>
+              </div>
+            </article>
 
+            <!-- Excellence: teks kiri, gambar kanan -->
+            <article
+              class="value-card value-card--reverse value-card--excellence"
+            >
+              <div class="value-card__image" aria-hidden="true">
+                <img
+                  src="Images/excellence.jpg"
+                  alt="Ilustrasi jam tungku proses mewakili nilai Excellence"
+                  class="value-card__illustration"
+                  loading="lazy"
+                />
+              </div>
+              <div class="value-card__text">
+                <span class="value-card__badge">Excellence</span>
+                <h2>Keunggulan</h2>
+                <p class="value-card__def">
+                  Berkomitmen terus berkembang dan memberikan yang terbaik,
+                  bukan sekadar lulus. Etos perbaikan berkelanjutan dalam
+                  akademik, organisasi, dan pengembangan diri.
+                </p>
+                <ul class="value-card__behaviors">
+                  <li>
+                    Mengerjakan tugas untuk dipahami dan bisa dijelaskan ulang,
+                    bukan hanya «selesai».
+                  </li>
+                  <li>
+                    Mengambil inisiatif belajar hal baru di luar silabus,
+                    seperti course online atau sertifikasi.
+                  </li>
+                  <li>
+                    Menerima feedback dari dosen dan teman secara terbuka, lalu
+                    memperbaiki.
+                  </li>
+                  <li>
+                    Konsisten memberi kontribusi terbaik di proyek kelompok.
+                  </li>
+                </ul>
+                <p class="value-card__anti">
+                  Hindari: copy-paste tugas, menyerah saat menemui bug tanpa
+                  debug, «cukup lulus» sebagai target.
+                </p>
+              </div>
+            </article>
+
+            <!-- Integrity: tumpuk vertikal penuh lebar -->
+            <article class="value-card value-card--stack">
+              <div class="value-card__image" aria-hidden="true">
+                <img
+                  src="Images/integrity.jpg"
+                  alt="Ilustrasi kunci dan skala ornamental mewakili nilai Integrity"
+                  class="value-card__illustration"
+                  loading="lazy"
+                />
+              </div>
+              <div class="value-card__text">
+                <span class="value-card__badge">Integrity</span>
+                <h2>Integritas</h2>
+                <p class="value-card__def">
+                  Jujur, bertanggung jawab, dan konsisten antara perkataan,
+                  tindakan, dan komitmen. Fondasi kepercayaan di kelas,
+                  organisasi, dan dunia profesional.
+                </p>
+                <ul class="value-card__behaviors">
+                  <li>
+                    Tidak menyontek, tidak plagiat, tidak menyalin kode tanpa
+                    atribusi yang benar.
+                  </li>
+                  <li>Mengakui kesalahan dan menanggung konsekuensinya.</li>
+                  <li>
+                    Menepati komitmen ke kelompok, tidak menghilang saat
+                    deadlines.
+                  </li>
+                  <li>
+                    Konsisten antara yang diucapkan di forum dan yang dilakukan
+                    di lapangan.
+                  </li>
+                </ul>
+                <p class="value-card__anti">
+                  Hindari: plagiarisme, menyalahkan anggota tim, ghosting tugas
+                  kelompok, manipulasi absensi.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="refleksi" id="refleksi">
+        <div class="container refleksi__inner">
+          <h2>Refleksi Singkat</h2>
+          <div class="refleksi__divider"></div>
+          <div class="refleksi__questions">
+            <blockquote>
+              Pekan ini, kapan terakhir kamu benar-benar mendengarkan pendapat
+              teman yang berbeda dari kamu? <cite>- Harmony</cite>
+            </blockquote>
+            <blockquote>
+              Tugas terakhir yang kamu kumpulkan, apakah itu yang terbaik yang
+              bisa kamu berikan? <cite>- Excellence</cite>
+            </blockquote>
+            <blockquote>
+              Apakah komitmen yang kamu buat pada kelompok masih kamu tepati
+              sampai saat ini? <cite>- Integrity</cite>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="cta">
+        <div class="container cta__inner">
+          <h2>Diskusikan HEI di kelas kamu minggu ini.</h2>
+          <p>
+            Bagikan halaman ini ke grup kelas WhatsApp, server Discord BEM, atau
+            ajarkan sebagai pembuka sesi refleksi nilai bersama dosen wali.
+          </p>
+          <div class="cta__actions">
+            <button class="btn btn--cta" id="btn-share-page" type="button">
+              Bagikan halaman ini
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container footer__inner">
+          <div class="footer__credit">
+            Dibuat oleh Tim Sosialisasi Kelas Telkom University
+          </div>
+          <div class="footer__source">
+            Definisi HEI merujuk pada Buku Pedoman Mahasiswa Telkom University -
+            silakan validasi dengan sumber resmi sebelum publikasi.
+          </div>
+          <div class="footer__note">
+            &copy; 2026 - Halaman ini tidak menyimpan data pengunjung.
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</section>
 
-<section class="refleksi" id="refleksi">
-  <div class="container refleksi__inner">
-    <h2>Refleksi Singkat</h2>
-    <div class="refleksi__divider"></div>
-    <div class="refleksi__questions">
-      <blockquote>Pekan ini, kapan terakhir kamu benar-benar mendengarkan pendapat teman yang berbeda dari kamu? <cite>- Harmony</cite></blockquote>
-      <blockquote>Tugas terakhir yang kamu kumpulkan, apakah itu yang terbaik yang bisa kamu berikan? <cite>- Excellence</cite></blockquote>
-      <blockquote>Apakah komitmen yang kamu buat pada kelompok masih kamu tepati sampai saat ini? <cite>- Integrity</cite></blockquote>
+    <div class="toast" id="toast" role="alert" aria-live="polite">
+      URL berhasil disalin ke papan klip
     </div>
-  </div>
-</section>
 
-<section class="cta" id="cta">
-  <div class="container cta__inner">
-    <h2>Diskusikan HEI di kelas kamu minggu ini.</h2>
-    <p>Bagikan halaman ini ke grup kelas WhatsApp, server Discord BEM, atau ajarkan sebagai pembuka sesi refleksi nilai bersama dosen wali.</p>
-    <div class="cta__actions">
-      <button class="btn btn--cta" id="btn-share-page" type="button">Bagikan halaman ini</button>
-    </div>
-  </div>
-</section>
+    <script>
+      (function () {
+        var nav = document.getElementById("main-nav");
+        var sentinel = document.querySelector(".nav-sentinel");
+        var btnSharePage = document.getElementById("btn-share-page");
+        var toast = document.getElementById("toast");
 
-<footer>
-  <div class="container footer__inner">
-    <div class="footer__credit">Dibuat oleh Tim Sosialisasi Kelas Telkom University</div>
-    <div class="footer__source">Definisi HEI merujuk pada Buku Pedoman Mahasiswa Telkom University - silakan validasi dengan sumber resmi sebelum publikasi.</div>
-    <div class="footer__note">&copy; 2026 - Halaman ini tidak menyimpan data pengunjung.</div>
-  </div>
-</footer>
+        function showToast() {
+          toast.classList.add("toast--show");
+          setTimeout(function () {
+            toast.classList.remove("toast--show");
+          }, 2500);
+        }
 
-</div>
+        function copyUrl() {
+          if (!navigator.clipboard) return;
+          navigator.clipboard.writeText(window.location.href).then(showToast);
+        }
 
-<div class="toast" id="toast" role="alert" aria-live="polite">URL berhasil disalin ke papan klip</div>
+        if (btnSharePage) btnSharePage.addEventListener("click", copyUrl);
 
-<script>
-(function() {
-  var nav = document.getElementById('main-nav');
-  var sentinel = document.querySelector('.nav-sentinel');
-  var btnSharePage = document.getElementById('btn-share-page');
-  var toast = document.getElementById('toast');
+        if (nav && sentinel) {
+          new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                nav.classList.toggle("nav--stuck", !entry.isIntersecting);
+              });
+            },
+            { threshold: 0 },
+          ).observe(sentinel);
+        }
+      })();
+    </script>
 
-  function showToast() {
-    toast.classList.add('toast--show');
-    setTimeout(function() { toast.classList.remove('toast--show'); }, 2500);
-  }
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
 
-  function copyUrl() {
-    if (!navigator.clipboard) return;
-    navigator.clipboard.writeText(window.location.href).then(showToast);
-  }
+      // Konfigurasi project Firebase pendidikan-karakter
+      const firebaseConfig = {
+        apiKey: "AIzaSyAvfqXDr5isceUOVJ8fw72OKb0IbfBoyMM",
+        authDomain: "pendidikan-karakter.firebaseapp.com",
+        projectId: "pendidikan-karakter",
+        storageBucket: "pendidikan-karakter.firebasestorage.app",
+        messagingSenderId: "957253545242",
+        appId: "1:957253545242:web:149a8936ad530e099b50a3",
+        measurementId: "G-X6VH9R4YPZ"
+      };
 
-  if (btnSharePage) btnSharePage.addEventListener('click', copyUrl);
-
-  if (nav && sentinel) {
-    new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        nav.classList.toggle('nav--stuck', !entry.isIntersecting);
-      });
-    }, { threshold: 0 }).observe(sentinel);
-  }
-})();
-</script>
-
-</body>
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+  </body>
 </html>
