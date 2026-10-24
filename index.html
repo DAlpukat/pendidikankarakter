@@ -53,10 +53,6 @@
         padding: 0;
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
         font-family: var(--font-display);
         font-weight: 400;
@@ -1304,6 +1300,7 @@
       URL berhasil disalin ke papan klip
     </div>
 
+    <script src="js/vendor/lenis.min.js"></script>
     <script>
       (function () {
         var nav = document.getElementById("main-nav");
@@ -1335,6 +1332,23 @@
             { threshold: 0 },
           ).observe(sentinel);
         }
+      var lenis = new Lenis();
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      document.querySelectorAll("a[href^='#']").forEach(function (anchor) {
+        anchor.addEventListener("click", function (e) {
+          var target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target, { offset: -64 });
+          }
+        });
+      });
+
       })();
     </script>
 
